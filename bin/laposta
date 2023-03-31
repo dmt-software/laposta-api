@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+$path = dirname(__DIR__);
+if (!is_file($path . '/vendor/autoload.php')) {
+    $path = dirname(__DIR__, 4);
+}
+
+require $path . '/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\CommandLoader\FactoryCommandLoader;
+
+$commandLoader = new FactoryCommandLoader([
+    // key => callable
+]);
+
+$application = new Application();
+$application->setCommandLoader($commandLoader);
+$application->run();

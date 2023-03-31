@@ -1,0 +1,6 @@
+# exclude
+.gitattributes  export-ignore
+*/.gitkeep      export-ignore
+
+# diff
+*.php diff=php

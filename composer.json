@@ -1,0 +1,41 @@
+{
+  "name": "dmt-software/laposta-api",
+  "description": "Client to consume the Laposta API",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bas de Mes",
+      "email": "bas@dmt-software.nl"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "DMT\\Laposta\\Api\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "psr/http-message": "^1.0",
+    "psr/http-factory": "^1.0",
+    "dmt-software/http-client-middleware": "^0.1",
+    "league/tactician": "^1.0",
+    "jms/serializer": "^3.23",
+    "symfony/console": "^5.4"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DMT\\Test\\Laposta\\Api\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "9.6.6",
+    "guzzlehttp/psr7": "^2.4"
+  },
+  "scripts": {
+    "laposta": "bin/laposta",
+    "post-install-cmd": [
+      "chmod +x bin/laposta"
+    ]
+  }
+}
