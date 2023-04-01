@@ -5,9 +5,7 @@ namespace DMT\Laposta\Api\Serializer;
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Interfaces\Collection;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
-use JMS\Serializer\EventDispatcher\ObjectEvent;
 use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
-use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 
 class NormalizeNestedDataEventSubscriber implements EventSubscriberInterface
 {
