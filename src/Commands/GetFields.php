@@ -2,7 +2,7 @@
 
 namespace DMT\Laposta\Api\Commands;
 
-use DMT\Laposta\Api\Entity\Fields;
+use DMT\Laposta\Api\Entity\FieldCollection;
 use DMT\Laposta\Api\Interfaces\GetRequest;
 
 class GetFields implements GetRequest
@@ -26,6 +26,6 @@ class GetFields implements GetRequest
 
     public function toEntity(): string
     {
-        return Fields::class;
+        return FieldCollection::class;
     }
 }

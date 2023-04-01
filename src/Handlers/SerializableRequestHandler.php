@@ -3,16 +3,13 @@
 namespace DMT\Laposta\Api\Handlers;
 
 use DMT\Http\Client\RequestHandlerInterface;
-use DMT\Laposta\Api\Interfaces\PostRequest;
 use DMT\Laposta\Api\Interfaces\DeserializableResponse;
+use DMT\Laposta\Api\Interfaces\SerializableRequest;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
-/**
- * This handles request with post data.
- */
-class PostRequestHandler
+class SerializableRequestHandler
 {
     private RequestHandlerInterface $handler;
     private RequestFactoryInterface $factory;
@@ -29,19 +26,19 @@ class PostRequestHandler
     }
 
     /**
-     * Handle a post request.
+     * Handle a json post request.
      *
      * @return void|object
      * @throws \Psr\Http\Client\ClientExceptionInterface
      */
-    public function handle(PostRequest $postRequest)
+    public function handle(SerializableRequest $postRequest)
     {
         $request = $this->factory->createRequest('post', $postRequest->getUri());
-        $request = $request->withAddedHeader('content-type', 'application/x-www-form-urlencoded');
+        $request = $request->withAddedHeader('content-type', 'application/json');
 
         $payload = $this->serializer->serialize(
-            $postRequest->getPayload(),
-            'post-data',
+            $postRequest->getObject(),
+            'json',
             SerializationContext::create()->setGroups('Request')
         );
 

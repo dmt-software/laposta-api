@@ -13,6 +13,16 @@ class GetRequestHandler
     private RequestFactoryInterface $factory;
     private SerializerInterface $serializer;
 
+    public function __construct(
+        RequestHandlerInterface $handler,
+        RequestFactoryInterface $factory,
+        SerializerInterface $serializer
+    ) {
+        $this->handler = $handler;
+        $this->factory = $factory;
+        $this->serializer = $serializer;
+    }
+
     /**
      * Handle a get request.
      *

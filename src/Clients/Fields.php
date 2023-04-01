@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\Laposta\Api\Client;
+namespace DMT\Laposta\Api\Clients;
 
 use DMT\Laposta\Api\Commands\CreateField;
 use DMT\Laposta\Api\Commands\DeleteField;
@@ -8,10 +8,10 @@ use DMT\Laposta\Api\Commands\GetField;
 use DMT\Laposta\Api\Commands\GetFields;
 use DMT\Laposta\Api\Commands\UpdateField;
 use DMT\Laposta\Api\Entity\Field;
-use DMT\Laposta\Api\Entity\Fields;
+use DMT\Laposta\Api\Entity\FieldCollection;
 use League\Tactician\CommandBus;
 
-class FieldsApi
+class Fields
 {
     private CommandBus $commandBus;
 
@@ -25,9 +25,9 @@ class FieldsApi
      *
      * @param string $listId The ID of the list
      *
-     * @return \DMT\Laposta\Api\Entity\Fields
+     * @return \DMT\Laposta\Api\Entity\FieldCollection
      */
-    public function all(string $listId): Fields
+    public function all(string $listId): FieldCollection
     {
         return $this->commandBus->handle(new GetFields($listId));
     }
@@ -58,7 +58,7 @@ class FieldsApi
     }
 
     /**
-     * Update an existing  field.
+     * Update an existing field.
      *
      * @param \DMT\Laposta\Api\Entity\Field $field The field with modifications
      *
