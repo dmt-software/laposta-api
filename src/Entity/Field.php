@@ -107,7 +107,7 @@ class Field
      * An array of the available options, including IDs (alleen bij select_single or select_multiple)
      *
      * @JMS\Groups({"Request"})
-     * @JMS\Type("array<DMT\Test\Laposta\Api\Entity\Option>")
+     * @JMS\Type("array")
      */
     public ?array $optionsFull = null;
 

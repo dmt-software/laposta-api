@@ -41,7 +41,7 @@ class PostRequestHandler
 
         $payload = $this->serializer->serialize(
             $postRequest->getPayload(),
-            'post-data',
+            'http-post',
             SerializationContext::create()->setGroups('Request')
         );
 

@@ -165,6 +165,6 @@ class HttpPostSerializationVisitor extends AbstractVisitor implements Serializat
     {
         unset($this->navigator);
 
-        return http_build_query($data);
+        return http_build_query($data, '', '&', $this->encodingType);
     }
 }
