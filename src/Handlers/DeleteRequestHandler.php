@@ -30,19 +30,19 @@ class DeleteRequestHandler
      * @return void|object
      * @throws \Psr\Http\Client\ClientExceptionInterface
      */
-    public function handle(DeleteRequest $getRequest)
+    public function handle(DeleteRequest $deleteRequest)
     {
-        $request = $this->factory->createRequest('delete', $getRequest->getUri());
+        $request = $this->factory->createRequest('delete', $deleteRequest->getUri());
         $request = $request->withUri(
-            $request->getUri()->withQuery($getRequest->getQueryString())
+            $request->getUri()->withQuery($deleteRequest->getQueryString())
         );
 
         $response = $this->handler->handle($request);
 
-        if ($getRequest instanceof DeserializableResponse) {
+        if ($deleteRequest instanceof DeserializableResponse) {
             return $this->serializer->deserialize(
                 $response->getBody()->getContents(),
-                $getRequest->toEntity(),
+                $deleteRequest->toEntity(),
                 'json'
             );
         }
