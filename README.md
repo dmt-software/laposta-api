@@ -37,4 +37,4 @@ try {
 * (maybe) Add extra functionality to objects that implement Collection interface.
 * Create factory/builder or `dummy` container to ease client creation. 
 * Create Laposta SDK package for managing generating entities, webhooks, pages and/or html forms.
-
+* Test post multiple_select http-post serialization
