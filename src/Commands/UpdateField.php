@@ -17,7 +17,7 @@ class UpdateField implements PostRequest, DeserializableResponse
 
     public function getUri(): string
     {
-        return sprintf('https://api.laposta.nl/v2/field/%s', $this->field->fieldId);
+        return sprintf('https://api.laposta.nl/v2/field/%s', $this->field->id);
     }
 
     public function getPayload(): object

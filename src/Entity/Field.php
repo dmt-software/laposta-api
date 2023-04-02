@@ -9,9 +9,11 @@ class Field
 {
     /**
      * The ID of the field in question
+     *
      * @JMS\Type("string")
+     * @JMS\SerializedName('field_id')
      */
-    public ?string $fieldId = null;
+    public ?string $id = null;
 
     /**
      * The ID of the list to which the field belongs

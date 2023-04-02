@@ -54,7 +54,7 @@ class HttpRequestLocator implements HandlerLocator
         }
 
         if (is_a($commandName, DeleteRequest::class, true)) {
-            return new DeleteRequestHandler($this->handler, $this->factory, $this->serializer);
+            return new DeleteRequestHandler($this->handler, $this->factory);
         }
 
         throw MissingHandlerException::forCommand($commandName);

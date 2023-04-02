@@ -5,6 +5,8 @@ namespace DMT\Laposta\Api\Handlers;
 use DMT\Http\Client\RequestHandlerInterface;
 use DMT\Laposta\Api\Interfaces\PostRequest;
 use DMT\Laposta\Api\Interfaces\DeserializableResponse;
+use DMT\Laposta\Api\Serializer\ExistingObjectConstructor;
+use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -34,7 +36,7 @@ class PostRequestHandler
      * @return void|object
      * @throws \Psr\Http\Client\ClientExceptionInterface
      */
-    public function handle(PostRequest $postRequest)
+    public function handle(PostRequest $postRequest): void
     {
         $request = $this->factory->createRequest('post', $postRequest->getUri());
         $request = $request->withAddedHeader('content-type', 'application/x-www-form-urlencoded');
@@ -49,10 +51,16 @@ class PostRequestHandler
         $response = $this->handler->handle($request);
 
         if ($postRequest instanceof DeserializableResponse) {
-            return $this->serializer->deserialize(
+            $context = DeserializationContext::create()->setAttribute(
+                ExistingObjectConstructor::ATTRIBUTE,
+                $postRequest->getPayload()
+            );
+
+            $this->serializer->deserialize(
                 $response->getBody()->getContents(),
                 $postRequest->toEntity(),
-                'json'
+                'json',
+                $context
             );
         }
     }

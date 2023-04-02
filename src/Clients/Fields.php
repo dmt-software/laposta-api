@@ -49,36 +49,30 @@ class Fields
      * Add a new field to a list.
      *
      * @param \DMT\Laposta\Api\Entity\Field $field The field to add
-     *
-     * @return \DMT\Laposta\Api\Entity\Field The newly created field
      */
-    public function create(Field $field): Field
+    public function create(Field $field): void
     {
-        return $this->commandBus->handle(new CreateField($field));
+        $this->commandBus->handle(new CreateField($field));
     }
 
     /**
      * Update an existing field.
      *
      * @param \DMT\Laposta\Api\Entity\Field $field The field with modifications
-     *
-     * @return \DMT\Laposta\Api\Entity\Field The modified field
      */
-    public function update(Field $field): Field
+    public function update(Field $field): void
     {
-        return $this->commandBus->handle(new UpdateField($field));
+        $this->commandBus->handle(new UpdateField($field));
     }
 
     /**
      * Delete a field from a list.
      *
-     * @param string $listid The ID of the list
+     * @param string $listId The ID of the list
      * @param string $fieldId The ID of a field
-     *
-     * @return \DMT\Laposta\Api\Entity\Field A reference to the deleted field
      */
-    public function delete(string $listid, string $fieldId): Field
+    public function delete(string $listId, string $fieldId): void
     {
-        return $this->commandBus->handle(new DeleteField($listid, $fieldId));
+        $this->commandBus->handle(new DeleteField($listId, $fieldId));
     }
 }
