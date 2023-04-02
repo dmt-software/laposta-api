@@ -14,5 +14,5 @@ class Config
      *
      * @var array<string, string>
      */
-    public array $subscriberClass = [];
+    public array $customFieldsClasses = [];
 }

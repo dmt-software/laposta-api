@@ -8,6 +8,9 @@
 
 ### Create\Update
 
+The clients do not return the data on create, update or delete actions, instead 
+they update the object send to the server. 
+
 ```php
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Clients\Fields;
@@ -32,9 +35,11 @@ try {
 * Field options have some unpredictable behavior when updating a field.
   Find a way to deal with it and/or post a bug report.
 * Create http middleware to throw exceptions when the request ends in a error response.
-* Create Member entity generator that represents a member of a list.
-* Document stuff.
+* Create custom-fields entity generator that represents the user defined member fields of a list.
+* Document stuff, document stuff, document stuff.
 * (maybe) Add extra functionality to objects that implement Collection interface.
 * Create factory/builder or `dummy` container to ease client creation. 
 * Create Laposta SDK package for managing generating entities, webhooks, pages and/or html forms.
-* Test post multiple_select http-post serialization
+* Test post multiple_select http-post serialization.
+* Add validation middleware to command bus to validate before calling any client.
+* Write test, test and more test.

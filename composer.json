@@ -16,6 +16,7 @@
   },
   "require": {
     "php": ">=7.4",
+    "ext-json": "*",
     "psr/http-message": "^1.0",
     "psr/http-factory": "^1.0",
     "dmt-software/http-client-middleware": "^0.1",
