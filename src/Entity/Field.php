@@ -11,7 +11,7 @@ class Field
      * The ID of the field in question
      *
      * @JMS\Type("string")
-     * @JMS\SerializedName('field_id')
+     * @JMS\SerializedName("field_id")
      */
     public ?string $id = null;
 
@@ -109,7 +109,9 @@ class Field
      * An array of the available options, including IDs (alleen bij select_single or select_multiple)
      *
      * @JMS\Groups({"Request"})
-     * @JMS\Type("array")
+     * @JMS\Type("array<DMT\Laposta\Api\Entity\Option>")
+     *
+     * @var array<\DMT\Laposta\Api\Entity\Option>
      */
     public ?array $optionsFull = null;
 

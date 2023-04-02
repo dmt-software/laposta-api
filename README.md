@@ -28,6 +28,7 @@ try {
 
 ## Todo
 
+* ~~__[HIGH]__ find a way to serialize http post for child objects.~~
 * Field options have some unpredictable behavior when updating a field.
   Find a way to deal with it and/or post a bug report.
 * Create http middleware to throw exceptions when the request ends in a error response.
@@ -35,3 +36,5 @@ try {
 * Document stuff.
 * (maybe) Add extra functionality to objects that implement Collection interface.
 * Create factory/builder or `dummy` container to ease client creation. 
+* Create Laposta SDK package for managing generating entities, webhooks, pages and/or html forms.
+

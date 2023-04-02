@@ -20,7 +20,7 @@ class DeleteRequestHandler
     }
 
     /**
-     * Handle a get request.
+     * Handle a delete request.
      *
      * @return void|object
      * @throws \Psr\Http\Client\ClientExceptionInterface

@@ -165,6 +165,15 @@ class HttpPostSerializationVisitor extends AbstractVisitor implements Serializat
     {
         unset($this->navigator);
 
+        foreach ($data as $key => &$value) {
+            if (is_array($value) && isset($value[0])) {
+                $keys = array_map('key', $value);
+                $values = array_map('current', $value);
+
+                $value = array_combine($keys, $values);
+            }
+        }
+
         return http_build_query($data, '', '&', $this->encodingType);
     }
 }
