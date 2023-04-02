@@ -4,7 +4,6 @@ namespace DMT\Laposta\Api\Handlers;
 
 use DMT\Http\Client\RequestHandlerInterface;
 use DMT\Laposta\Api\Interfaces\DeleteRequest;
-use JMS\Serializer\SerializerInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
 class DeleteRequestHandler
