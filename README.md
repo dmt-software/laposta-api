@@ -4,6 +4,20 @@
 
 > make the Laposta api client fully object-oriented.
 
+## Install
+
+```bash
+composer require dmt-software/laposta-api
+```
+
+After installing this package, edit or add a configuration file or add the configuration to your dependency container.
+then run the command to generate list fields, to generate a class for the custom fields of the subscribers.
+
+```
+vendor/bin/laposta generate:list-fields <config or bootstrap file> -l <list-id> 
+```
+
+
 ## Concepts
 
 ### Numeric fields
@@ -46,6 +60,6 @@ try {
 * ~~Create factory/builder or `dummy` container to ease client creation.~~ 
 * Create Laposta SDK package for managing generating entities, webhooks, pages and/or html forms.
 * Test post multiple_select http-post serialization.
-* Add validation middleware to command bus to validate before calling any client.
+* ~~Add validation middleware to command bus to validate before calling any client.~~
 * Add console commands to check ~~and render custom field~~ entities.
 * Write test, test and more test.
