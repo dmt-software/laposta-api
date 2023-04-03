@@ -17,13 +17,6 @@ class NormalizeNestedDataEventSubscriber implements EventSubscriberInterface
             'format' => 'json',
             'priority' => 100,
         ];
-
-        yield [
-            'event' => 'serializer.pre_deserialize',
-            'method' => 'normalizeFieldOptions',
-            'class' => Field::class,
-            'format' => 'json',
-        ];
     }
 
     public function normalizeJsonDataArray(PreDeserializeEvent $event)
@@ -37,21 +30,6 @@ class NormalizeNestedDataEventSubscriber implements EventSubscriberInterface
             $event->setData(compact('data'));
         } elseif ($event->getContext()->getDepth() == 1) { // use interface here too
             $event->setData(array_values($event->getData())[0]);
-        }
-    }
-
-    public function normalizeFieldOptions(PreDeserializeEvent $event)
-    {
-        $field = $event->getData();
-        if ($field['options_full'] ?? null) {
-            $options = [];
-            foreach ($field['options_full'] as $option) {
-                if ($option['id'] !== null) {
-                    $options[$option['id']] = $option['value'];
-                }
-            }
-            $field['options_full'] = $options;
-            $event->setData($field);
         }
     }
 }

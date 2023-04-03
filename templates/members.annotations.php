@@ -34,7 +34,7 @@ class <?= $class->name ?> extends BaseCustomFields
      * @Assert\<?= $property->type == 'string' ? 'NotEmpty' : 'NotNull' ?>()
 <?php endif ?>
      */
-    public ?<?= $property->type ?> $<?= $property->name ?> = <?= $property->default ?? 'null' ?>;
+    public ?<?= $property->type ?> $<?= $property->name ?> = <?= $property->default ?: 'null' ?>;
 <?php endforeach ?>
 }
 <?= PHP_EOL ?>

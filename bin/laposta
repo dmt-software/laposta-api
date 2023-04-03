@@ -8,11 +8,12 @@ if (!is_file($path . '/vendor/autoload.php')) {
 
 require $path . '/vendor/autoload.php';
 
+use DMT\Laposta\Api\Console\GenerateCustomFieldsCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\CommandLoader\FactoryCommandLoader;
 
 $commandLoader = new FactoryCommandLoader([
-    // key => callable
+    GenerateCustomFieldsCommand::getDefaultName() => fn() => new GenerateCustomFieldsCommand(),
 ]);
 
 $application = new Application();

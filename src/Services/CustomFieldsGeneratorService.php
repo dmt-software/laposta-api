@@ -31,6 +31,9 @@ class CustomFieldsGeneratorService
 
         $collection = $this->fields->all($listId);
         foreach ($collection->fields as $field) {
+            if (!$field->customName) {
+                continue; // system field
+            }
             $prop = new PropertyBinding();
             $prop->name = $field->customName;
             $prop->required = $field->required;

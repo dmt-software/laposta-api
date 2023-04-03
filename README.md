@@ -43,9 +43,9 @@ try {
 * ~~Create custom-fields entity generator that represents the user defined member fields of a list.~~
 * Document stuff, document stuff, document stuff.
 * Add extra functionality to objects that implement Collection interface.
-* Create factory/builder or `dummy` container to ease client creation. 
+* ~~Create factory/builder or `dummy` container to ease client creation.~~ 
 * Create Laposta SDK package for managing generating entities, webhooks, pages and/or html forms.
 * Test post multiple_select http-post serialization.
 * Add validation middleware to command bus to validate before calling any client.
-* Add console commands to check and render custom field entities.
+* Add console commands to check ~~and render custom field~~ entities.
 * Write test, test and more test.
