@@ -16,6 +16,114 @@ use PHPUnit\Framework\TestCase;
 class CustomFieldsGeneratorServiceTest extends TestCase
 {
     /**
+     * @dataProvider fieldForCollectionProvider
+     */
+    public function testGenerateEntity(Field $field, string $expected): void
+    {
+        $this->expectOutputRegex($expected);
+
+        $fieldsCollection = new FieldCollection();
+        $fieldsCollection->fields[] = $field;
+
+        $service = $this->getCustomFieldsService($fieldsCollection);
+        $service->generateEntity('BaImMu3JZA', 'My\\Personal\\Space\\EntityClass', 'php://output');
+    }
+
+    public function fieldForCollectionProvider(): iterable
+    {
+        $field = new Field();
+        $field->customName = 'text';
+
+        yield 'text field' => [$field, '~JMS\\\\Type\("string"\)(.*)public \?string \$text = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'required';
+        $field->required = true;
+
+        yield 'required field' => [$field, '~Assert\\\\NotEmpty\(\)(.*)public \?string \$required = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'required';
+        $field->datatype = 'numeric';
+        $field->required = true;
+
+        yield 'required numeric field' => [$field, '~Assert\\\\NotNull\(\)(.*)public \?float \$required = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'date';
+        $field->datatype = 'date';
+
+        yield 'date field' => [$field, '~JMS\\\\Type\("DateTime<\'Y-m-d\'>"\)(.*)public \?DateTime \$date = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'number';
+        $field->datatype = 'numeric';
+        $field->defaultvalue = '14';
+
+        yield 'integer field' => [$field, '~JMS\\\\Type\("int"\)(.*)public \?int \$number = 14;~ms'];
+
+        $field = new Field();
+        $field->customName = 'number';
+        $field->datatype = 'numeric';
+
+        yield 'float field' => [$field, '~JMS\\\\Type\("float"\)(.*)public \?float \$number = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'number';
+        $field->datatype = 'numeric';
+        $field->defaultvalue = '0.0';
+
+        yield 'float field with default' => [$field, '~JMS\\\\Type\("float"\)(.*)public \?float \$number = 0.0;~ms'];
+
+        $field = new Field();
+        $field->customName = 'choose';
+        $field->datatype = 'select_single';
+        $field->options = ['one', 'two', 'three'];
+
+        yield 'select no default' => [$field, '~JMS\\\\Type\("string"\)(.*)public \?string \$choose = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'choose';
+        $field->datatype = 'select_single';
+        $field->options = ['one', 'two', 'three'];
+        $field->defaultvalue = 'two';
+
+        yield 'select with default' => [$field, '~JMS\\\\Type\("string"\)(.*)public \?string \$choose = \'two\';~ms'];
+
+        $field = new Field();
+        $field->customName = 'choose';
+        $field->datatype = 'select_single';
+        $field->options = ['one', 'two', 'three'];
+        $field->defaultvalue = 'five';
+
+        yield 'select default missing' => [$field, '~JMS\\\\Type\("string"\)(.*)public \?string \$choose = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'choose';
+        $field->datatype = 'select_multiple';
+        $field->options = ['one', 'two', 'three'];
+
+        yield 'multi no default' => [$field, '~JMS\\\\Type\("array"\)(.*)public \?array \$choose = null;~ms'];
+
+        $field = new Field();
+        $field->customName = 'choose';
+        $field->datatype = 'select_multiple';
+        $field->options = ['one', 'two', 'three'];
+        $field->defaultvalue = 'two';
+
+        yield 'multi with default' => [$field, '~JMS\\\\Type\("array"\)(.*)public \?array \$choose = \[\'two\'\];~ms'];
+
+        $field = new Field();
+        $field->customName = 'choose';
+        $field->datatype = 'select_multiple';
+        $field->options = ['one', 'two', 'three'];
+        $field->defaultvalue = 'five';
+
+        yield 'multi default missing' => [$field, '~JMS\\\\Type\("array"\)(.*)public \?array \$choose = null;~ms'];
+
+    }
+
+    /**
      * @dataProvider isUpToDateEntityProvider
      */
     public function testEntityIsUpToDate(string $listId, FieldCollection $collection): void
