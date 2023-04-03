@@ -53,7 +53,7 @@ class GenerateCustomFieldsCommand extends Command
         $destination = $input->getOption('destination') . sprintf('/%s.php', $fileName);
 
         try {
-            $service = new CustomFieldsGeneratorService($config, new Fields(CommandBusFactory::create($config)));
+            $service = new CustomFieldsGeneratorService($config);
             $service->generateEntity(
                 $input->getOption('list-id'),
                 $input->getOption('class-name'),

@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeInterface;
 use DMT\Laposta\Api\Clients\Fields;
 use DMT\Laposta\Api\Config;
+use DMT\Laposta\Api\Factories\CommandBusFactory;
 use DMT\Laposta\Api\Interfaces\TemplateParser;
 use DMT\Laposta\Api\Services\Bindings\ClassBinding;
 use DMT\Laposta\Api\Services\Bindings\PropertyBinding;
@@ -17,10 +18,10 @@ class CustomFieldsGeneratorService
     private Fields $fields;
     private TemplateParser $parser;
 
-    public function __construct(Config $config, Fields $fields, TemplateParser $parser = null)
+    public function __construct(Config $config, Fields $fields = null, TemplateParser $parser = null)
     {
         $this->config = $config;
-        $this->fields = $fields;
+        $this->fields = $fields ?? new Fields(CommandBusFactory::create($config));
         $this->parser = $parser ?? new NativePhpParser();
     }
 
