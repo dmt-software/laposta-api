@@ -40,7 +40,7 @@ class CustomFieldsGeneratorServiceTest extends TestCase
         $field->customName = 'required';
         $field->required = true;
 
-        yield 'required field' => [$field, '~Assert\\\\NotEmpty\(\)(.*)public \?string \$required = null;~ms'];
+        yield 'required field' => [$field, '~Assert\\\\NotBlank\(\)(.*)public \?string \$required = null;~ms'];
 
         $field = new Field();
         $field->customName = 'required';
@@ -53,7 +53,7 @@ class CustomFieldsGeneratorServiceTest extends TestCase
         $field->customName = 'date';
         $field->datatype = 'date';
 
-        yield 'date field' => [$field, '~JMS\\\\Type\("DateTime<\'Y-m-d\'>"\)(.*)public \?DateTime \$date = null;~ms'];
+        yield 'date field' => [$field, '~JMS\\\\Type\("DateTime<\'Y-m-d\', \'\', \'Y-m-d H:i:s\'>"\)(.*)public \?DateTime \$date = null;~ms'];
 
         $field = new Field();
         $field->customName = 'number';
@@ -61,6 +61,13 @@ class CustomFieldsGeneratorServiceTest extends TestCase
         $field->defaultvalue = '14';
 
         yield 'integer field' => [$field, '~JMS\\\\Type\("int"\)(.*)public \?int \$number = 14;~ms'];
+
+        $field = new Field();
+        $field->customName = 'number';
+        $field->datatype = 'numeric';
+        $field->defaultvalue = '0';
+
+        yield 'integer field default 0' => [$field, '~JMS\\\\Type\("int"\)(.*)public \?int \$number = 0;~ms'];
 
         $field = new Field();
         $field->customName = 'number';

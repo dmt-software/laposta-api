@@ -28,13 +28,13 @@ class <?= $class->name ?> extends BaseCustomFields
 {<?php foreach($class->properties as $property): ?>
 
     /**
-     * @JMS\Type("<?= is_a($property->type, \DateTimeInterface::class, true) ? "DateTime<'Y-m-d'>" : $property->type ?>")
+     * @JMS\Type("<?= is_a($property->type, \DateTimeInterface::class, true) ? "DateTime<'Y-m-d', '', 'Y-m-d H:i:s'>" : $property->type ?>")
 <?php if ($property->required): ?>
      *
-     * @Assert\<?= $property->type == 'string' ? 'NotEmpty' : 'NotNull' ?>()
+     * @Assert\<?= $property->type == 'string' ? 'NotBlank' : 'NotNull' ?>()
 <?php endif ?>
      */
-    public ?<?= $property->type ?> $<?= $property->name ?> = <?= $property->default ?: 'null' ?>;
+    public ?<?= $property->type ?> $<?= $property->name ?> = <?= $property->default ?? 'null' ?>;
 <?php endforeach ?>
 }
 <?= PHP_EOL ?>

@@ -9,7 +9,7 @@ use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
 
 class NormalizeNestedDataEventSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): iterable
     {
         yield [
             'event' => 'serializer.pre_deserialize',

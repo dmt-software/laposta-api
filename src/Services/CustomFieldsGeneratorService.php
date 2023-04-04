@@ -53,7 +53,8 @@ class CustomFieldsGeneratorService
             } elseif ($field->datatype == 'numeric') {
                 $prop->type = 'float';
                 $prop->default = is_numeric($field->defaultvalue) ? $field->defaultvalue : null;
-                if ($prop->default && !preg_match('~\d\.\d~', $prop->default)) {
+
+                if ($prop->default !== null && !preg_match('~\d\.\d~', $prop->default)) {
                     $prop->type = 'int';
                 }
             } elseif ($field->datatype == 'select_multiple') {

@@ -63,3 +63,5 @@ try {
 * ~~Add validation middleware to command bus to validate before calling any client.~~
 * Add console commands to check ~~and render custom field~~ entities.
 * Write test, test and more test.
+* ~~Integer as numeric value does not work properly.~~
+* Create Subscriber client.

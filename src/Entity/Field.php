@@ -10,6 +10,7 @@ class Field
     /**
      * The ID of the field in question
      *
+     * @JMS\Groups({"Request"})
      * @JMS\Type("string")
      * @JMS\SerializedName("field_id")
      */

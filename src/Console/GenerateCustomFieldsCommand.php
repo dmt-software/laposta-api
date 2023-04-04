@@ -4,6 +4,7 @@ namespace DMT\Laposta\Api\Console;
 
 use DMT\Laposta\Api\Config;
 use DMT\Laposta\Api\Services\CustomFieldsGeneratorService;
+use Psr\Http\Client\ClientExceptionInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -59,9 +60,9 @@ class GenerateCustomFieldsCommand extends Command
                 $input->getOption('class-name'),
                 $input->getOption('dry-run') ? 'php://output' : $destination
             );
-        } catch (\Exception $exception) {
+        } catch (ClientExceptionInterface $exception) {
             $output->writeln('  > error retrieving fields');
-
+var_dump($exception->getError());
             return Command::FAILURE;
         }
 
