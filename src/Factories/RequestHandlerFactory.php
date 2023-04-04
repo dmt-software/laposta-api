@@ -6,6 +6,7 @@ use DMT\Http\Client\Middleware\BasicAuthenticationMiddleware;
 use DMT\Http\Client\RequestHandler;
 use DMT\Http\Client\RequestHandlerInterface;
 use DMT\Laposta\Api\Config;
+use DMT\Laposta\Api\Http\ExceptionMiddleware;
 use DMT\Laposta\Api\Interfaces\Factory;
 
 class RequestHandlerFactory implements Factory
@@ -14,6 +15,7 @@ class RequestHandlerFactory implements Factory
     {
         return new RequestHandler(
             HttpClientFactory::create($config),
+            new ExceptionMiddleware(),
             new BasicAuthenticationMiddleware($config->apiKey, '')
         );
     }

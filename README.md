@@ -53,7 +53,7 @@ try {
 * ~~__[HIGH]__ find a way to serialize http post for child objects.~~
 * Field options have some unpredictable behavior when updating a field.
   Find a way to deal with it and/or post a bug report.
-* Create http middleware to throw exceptions when the request ends in a error response.
+* ~~Create http middleware to throw exceptions when the request ends in a error response.~~
 * ~~Create custom-fields entity generator that represents the user defined member fields of a list.~~
 * Document stuff, document stuff, document stuff.
 * Add extra functionality to objects that implement Collection interface.
