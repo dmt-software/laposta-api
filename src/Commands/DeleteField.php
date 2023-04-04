@@ -4,11 +4,18 @@ namespace DMT\Laposta\Api\Commands;
 
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Interfaces\DeleteRequest;
-use DMT\Laposta\Api\Interfaces\DeserializableResponse;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class DeleteField implements DeleteRequest, DeserializableResponse
+class DeleteField implements DeleteRequest
 {
+    /**
+     * @Assert\NotBlank()
+     */
     private string $listId;
+
+    /**
+     * @Assert\NotBlank()
+     */
     private string $fieldId;
 
     public function __construct(string $listId, string $fieldId)

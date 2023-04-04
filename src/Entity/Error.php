@@ -2,6 +2,8 @@
 
 namespace DMT\Laposta\Api\Entity;
 
+use JMS\Serializer\Annotation as JMS;
+
 /**
  * Class Error
  *

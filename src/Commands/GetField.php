@@ -3,10 +3,19 @@
 namespace DMT\Laposta\Api\Commands;
 
 use DMT\Laposta\Api\Entity\Field;
+use DMT\Laposta\Api\Interfaces\GetRequest;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class GetField implements \DMT\Laposta\Api\Interfaces\GetRequest
+class GetField implements GetRequest
 {
+    /**
+     * @Assert\NotBlank()
+     */
     private string $listId;
+
+    /**
+     * @Assert\NotBlank()
+     */
     private string $fieldId;
 
     public function __construct(string $listId, string $fieldId)

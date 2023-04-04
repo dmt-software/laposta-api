@@ -4,6 +4,7 @@ namespace DMT\Laposta\Api\Entity;
 
 use DateTime;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Field
 {
@@ -21,6 +22,7 @@ class Field
      *
      * @JMS\Groups({"Request"})
      * @JMS\Type("string")
+     * @Assert\NotBlank()
      */
     public string $listId;
 
@@ -50,6 +52,7 @@ class Field
      *
      * @JMS\Groups({"Request"})
      * @JMS\Type("string")
+     * @Assert\NotBlank()
      */
     public string $name;
 
@@ -80,6 +83,8 @@ class Field
      *
      * @JMS\Groups({"Request"})
      * @JMS\Type("string")
+     * @Assert\NotBlank()
+     * @Assert\Choice({"text", "numeric", "date", "select_single", "select_multiple"})
      */
     public string $datatype = 'text';
 
