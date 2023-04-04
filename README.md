@@ -25,6 +25,7 @@ use DMT\Laposta\Api\Interfaces\Exception;
 use DMT\Laposta\Api\Clients\Subscribers;
 
 try {
+    /** @var Subscribers $client */
     $client->get('BaImMu3JZA', 'user@example.com');
 } catch (ValidationException $exception) {
      // input was wrong 
