@@ -1,12 +1,12 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands;
+namespace DMT\Laposta\Api\Commands\Fields;
 
 use DMT\Laposta\Api\Entity\Field;
-use DMT\Laposta\Api\Interfaces\DeleteRequest;
+use DMT\Laposta\Api\Interfaces\GetRequest;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class DeleteField implements DeleteRequest
+class GetField implements GetRequest
 {
     /**
      * @Assert\NotBlank()

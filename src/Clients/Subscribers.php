@@ -2,8 +2,8 @@
 
 namespace DMT\Laposta\Api\Clients;
 
-use DMT\Laposta\Api\Commands\GetSubscriber;
-use DMT\Laposta\Api\Commands\GetSubscribers;
+use DMT\Laposta\Api\Commands\Subscribers\GetSubscriber;
+use DMT\Laposta\Api\Commands\Subscribers\GetSubscribers;
 use DMT\Laposta\Api\Entity\Subscriber;
 use DMT\Laposta\Api\Entity\SubscriberCollection;
 use League\Tactician\CommandBus;

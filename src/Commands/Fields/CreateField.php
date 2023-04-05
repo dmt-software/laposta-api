@@ -1,12 +1,12 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands;
+namespace DMT\Laposta\Api\Commands\Fields;
 
 use DMT\Laposta\Api\Entity\Field;
-use DMT\Laposta\Api\Interfaces\DeserializableResponse;
 use DMT\Laposta\Api\Interfaces\PostRequest;
+use DMT\Laposta\Api\Interfaces\DeserializableResponse;
 
-class UpdateField implements PostRequest, DeserializableResponse
+class CreateField implements PostRequest, DeserializableResponse
 {
     private Field $field;
 
@@ -17,10 +17,10 @@ class UpdateField implements PostRequest, DeserializableResponse
 
     public function getUri(): string
     {
-        return sprintf('https://api.laposta.nl/v2/field/%s', $this->field->id);
+        return 'https://api.laposta.nl/v2/field';
     }
 
-    public function getPayload(): object
+    public function getPayload(): Field
     {
         return $this->field;
     }

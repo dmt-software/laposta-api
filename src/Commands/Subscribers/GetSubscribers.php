@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands;
+namespace DMT\Laposta\Api\Commands\Subscribers;
 
 use DMT\Laposta\Api\Entity\SubscriberCollection;
 use DMT\Laposta\Api\Interfaces\Collection;

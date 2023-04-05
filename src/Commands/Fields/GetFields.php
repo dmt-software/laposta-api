@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands;
+namespace DMT\Laposta\Api\Commands\Fields;
 
 use DMT\Laposta\Api\Entity\FieldCollection;
 use DMT\Laposta\Api\Interfaces\GetRequest;

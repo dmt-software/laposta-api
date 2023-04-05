@@ -2,11 +2,11 @@
 
 namespace DMT\Laposta\Api\Clients;
 
-use DMT\Laposta\Api\Commands\CreateField;
-use DMT\Laposta\Api\Commands\DeleteField;
-use DMT\Laposta\Api\Commands\GetField;
-use DMT\Laposta\Api\Commands\GetFields;
-use DMT\Laposta\Api\Commands\UpdateField;
+use DMT\Laposta\Api\Commands\Fields\CreateField;
+use DMT\Laposta\Api\Commands\Fields\DeleteField;
+use DMT\Laposta\Api\Commands\Fields\GetField;
+use DMT\Laposta\Api\Commands\Fields\GetFields;
+use DMT\Laposta\Api\Commands\Fields\UpdateField;
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Entity\FieldCollection;
 use League\Tactician\CommandBus;
