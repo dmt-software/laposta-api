@@ -17,7 +17,13 @@ class UpdateSubscriber implements PostRequest, DeserializableResponse
 
     public function getUri(): string
     {
-        return sprintf('https://api.laposta.nl/v2/member/%s', $this->subscriber->id);
+        if (!$this->subscriber->id && preg_match('~^(?<user>.+)@(?<domain>[^@]+)$~', $this->subscriber->email, $m)) {
+            /** double encode + sign */
+            $email = sprintf('%s@%s', urlencode(str_replace('+', '%2B', $m['user'])), $m['domain']);
+
+        }
+
+        return sprintf('https://api.laposta.nl/v2/member/%s', $email ?? $this->subscriber->id);
     }
 
     public function getPayload(): object

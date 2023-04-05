@@ -22,6 +22,7 @@ class Subscriber
      *
      * @JMS\Groups({"Request"})
      * @JMS\Type("string")
+     * @Assert\NotBlank()
      */
     public string $listId;
 
@@ -31,6 +32,7 @@ class Subscriber
      * @JMS\Groups({"Request"})
      * @JMS\Type("string")
      * @Assert\Email()
+     * @Assert\NotBlank()
      */
     public string $email;
 

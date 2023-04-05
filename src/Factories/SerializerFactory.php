@@ -9,6 +9,7 @@ use DMT\Laposta\Api\Serializer\ExistingObjectConstructor;
 use DMT\Laposta\Api\Serializer\FieldOptionsHandler;
 use DMT\Laposta\Api\Serializer\HttpPostSerializerVisitorFactory;
 use DMT\Laposta\Api\Serializer\NormalizeNestedDataEventSubscriber;
+use DMT\Laposta\Api\Serializer\SubscribeOptionsEventSubscriber;
 use JMS\Serializer\Construction\UnserializeObjectConstructor;
 use JMS\Serializer\EventDispatcher\EventDispatcherInterface;
 use JMS\Serializer\Handler\HandlerRegistryInterface;
@@ -20,12 +21,14 @@ class SerializerFactory implements Factory
     public static function create(Config $config): Serializer
     {
         return SerializerBuilder::create()
-            ->setSerializationVisitor('http-post', new HttpPostSerializerVisitorFactory())
             ->addDefaultDeserializationVisitors()
+            ->addDefaultSerializationVisitors()
+            ->setSerializationVisitor('http-post', new HttpPostSerializerVisitorFactory())
             ->addDefaultListeners()
             ->configureListeners(function (EventDispatcherInterface $dispatcher) use ($config) {
                 $dispatcher->addSubscriber(new NormalizeNestedDataEventSubscriber());
                 $dispatcher->addSubscriber(new CustomFieldsDiscriminatorEventSubscriber($config));
+                $dispatcher->addSubscriber(new SubscribeOptionsEventSubscriber());
             })
             ->addDefaultHandlers()
             ->configureHandlers(function (HandlerRegistryInterface $registry) {

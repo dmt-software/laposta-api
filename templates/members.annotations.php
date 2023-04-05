@@ -28,6 +28,7 @@ class <?= $class->name ?> extends BaseCustomFields
 {<?php foreach($class->properties as $property): ?>
 
     /**
+     * @JMS\Groups({"Request"})
      * @JMS\Type("<?= is_a($property->type, \DateTimeInterface::class, true) ? "DateTime<'Y-m-d', '', 'Y-m-d H:i:s'>" : $property->type ?>")
 <?php if ($property->required): ?>
      *
@@ -37,4 +38,3 @@ class <?= $class->name ?> extends BaseCustomFields
     public ?<?= $property->type ?> $<?= $property->name ?> = <?= $property->default ?? 'null' ?>;
 <?php endforeach ?>
 }
-<?= PHP_EOL ?>

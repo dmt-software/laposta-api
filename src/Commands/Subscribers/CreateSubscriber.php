@@ -8,13 +8,17 @@ use DMT\Laposta\Api\Interfaces\PostRequest;
 
 class CreateSubscriber implements PostRequest, DeserializableResponse
 {
-    private Subscriber $subscriber;
-    private $subscribeOptions;
+    public const SUPPRESS_EMAIL_NOTIFICATION = 1;
+    public const SUPPRESS_EMAIL_WELCOME = 2;
+    public const IGNORE_DOUBLEOPTIN = 4;
 
-    public function __construct(Subscriber $subscriber, $subscribeOptions = null)
+    private Subscriber $subscriber;
+    private int $subscribeOptions;
+
+    public function __construct(Subscriber $subscriber, int $flags = 0)
     {
         $this->subscriber = $subscriber;
-        $this->subscribeOptions = $subscribeOptions;
+        $this->subscribeOptions = $flags;
     }
 
     public function getUri(): string
@@ -32,8 +36,19 @@ class CreateSubscriber implements PostRequest, DeserializableResponse
         return Subscriber::class;
     }
 
-    public function getSubscribeOptions()
+    public function getSubscribeOptions(): array
     {
+        $options = [];
+        if (self::SUPPRESS_EMAIL_NOTIFICATION & $this->subscribeOptions) {
+            $options['suppress_email_notification'] = true;
+        }
+        if (self::SUPPRESS_EMAIL_WELCOME & $this->subscribeOptions) {
+            $options['suppress_email_welcome'] = true;
+        }
+        if (self::IGNORE_DOUBLEOPTIN & $this->subscribeOptions) {
+            $options['ignore_doubleoptin'] = true;
+        }
 
+        return $options;
     }
 }

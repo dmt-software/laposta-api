@@ -2,8 +2,11 @@
 
 namespace DMT\Laposta\Api\Clients;
 
+use DMT\Laposta\Api\Commands\Subscribers\CreateSubscriber;
+use DMT\Laposta\Api\Commands\Subscribers\DeleteSubscriber;
 use DMT\Laposta\Api\Commands\Subscribers\GetSubscriber;
 use DMT\Laposta\Api\Commands\Subscribers\GetSubscribers;
+use DMT\Laposta\Api\Commands\Subscribers\UpdateSubscriber;
 use DMT\Laposta\Api\Entity\Subscriber;
 use DMT\Laposta\Api\Entity\SubscriberCollection;
 use League\Tactician\CommandBus;
@@ -25,5 +28,20 @@ class Subscribers
     public function get(string $listId, string $identifiedBy): Subscriber
     {
         return $this->commandBus->handle(new GetSubscriber($listId, $identifiedBy));
+    }
+
+    public function create(Subscriber $subscriber, int $flags = 0): void
+    {
+        $this->commandBus->handle(new CreateSubscriber($subscriber, $flags));
+    }
+
+    public function update(Subscriber $subscriber): void
+    {
+        $this->commandBus->handle(new UpdateSubscriber($subscriber));
+    }
+
+    public function delete(string $listId, string $identifiedBy): void
+    {
+        $this->commandBus->handle(new DeleteSubscriber($listId, $identifiedBy));
     }
 }
