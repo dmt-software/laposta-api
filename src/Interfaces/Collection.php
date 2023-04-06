@@ -2,7 +2,10 @@
 
 namespace DMT\Laposta\Api\Interfaces;
 
-interface Collection
+use Countable;
+use IteratorAggregate;
+
+interface Collection extends IteratorAggregate, Countable
 {
 
 }

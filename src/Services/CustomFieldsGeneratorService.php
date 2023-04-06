@@ -31,7 +31,7 @@ class CustomFieldsGeneratorService
         $class = new ClassBinding($toEntityClassName);
 
         $collection = $this->fields->all($listId);
-        foreach ($collection->fields as $field) {
+        foreach ($collection as $field) {
             if (!$field->customName) {
                 continue; // system field
             }
@@ -84,7 +84,7 @@ class CustomFieldsGeneratorService
         $generatedOn = DateTime::createFromFormat(DateTimeInterface::RFC7231, trim($match['date']));
 
         $collection = $this->fields->all($listId);
-        foreach ($collection->fields as $field) {
+        foreach ($collection as $field) {
             if ($field->created > $generatedOn || $field->modified > $generatedOn) {
                 return false;
             }

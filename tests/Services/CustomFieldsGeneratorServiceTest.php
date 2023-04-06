@@ -22,8 +22,7 @@ class CustomFieldsGeneratorServiceTest extends TestCase
     {
         $this->expectOutputRegex($expected);
 
-        $fieldsCollection = new FieldCollection();
-        $fieldsCollection->fields[] = $field;
+        $fieldsCollection = new FieldCollection([$field]);
 
         $service = $this->getCustomFieldsService($fieldsCollection);
         $service->generateEntity('BaImMu3JZA', 'My\\Personal\\Space\\EntityClass', 'php://output');
@@ -140,16 +139,14 @@ class CustomFieldsGeneratorServiceTest extends TestCase
 
     public function isUpToDateEntityProvider(): iterable
     {
-        $createdCollection = new FieldCollection();
         $field = new Field();
         $field->created = new DateTime('2023-02-28');
-        $createdCollection->fields[] = $field;
+        $createdCollection = new FieldCollection([$field]);
 
-        $modifiedCollection = new FieldCollection();
         $field = new Field();
         $field->created = new DateTime('2023-02-28');
         $field->modified = new DateTime('2023-03-21');
-        $modifiedCollection->fields[] = $field;
+        $modifiedCollection = new FieldCollection([$field]);
 
         return [
             'no custom fields' => ['BaImMu3JZA', new FieldCollection()],
@@ -168,16 +165,14 @@ class CustomFieldsGeneratorServiceTest extends TestCase
 
     public function entityNeedsToBeRenderedProvider(): iterable
     {
-        $createdCollection = new FieldCollection();
         $field = new Field();
         $field->created = new DateTime('2023-06-28');
-        $createdCollection->fields[] = $field;
+        $createdCollection = new FieldCollection([$field]);
 
-        $modifiedCollection = new FieldCollection();
         $field = new Field();
         $field->created = new DateTime('2023-02-28');
         $field->modified = new DateTime('2023-06-21');
-        $modifiedCollection->fields[] = $field;
+        $modifiedCollection = new FieldCollection([$field]);
 
         return [
             'no entity' => ['ImBaMuZa3J', new FieldCollection()],

@@ -2,8 +2,10 @@
 
 namespace DMT\Laposta\Api\Entity;
 
+use ArrayIterator;
 use DMT\Laposta\Api\Interfaces\Collection;
 use JMS\Serializer\Annotation as JMS;
+use Traversable;
 
 class SubscriberCollection implements Collection
 {
@@ -13,5 +15,21 @@ class SubscriberCollection implements Collection
      *
      * @var array<\DMT\Laposta\Api\Entity\Subscriber>
      */
-    public array $subscribers = [];
+    private array $subscribers = [];
+
+    public function __construct(array $subscribers = [])
+    {
+        $this->subscribers = $subscribers;
+    }
+
+
+    public function getIterator()
+    {
+        return new ArrayIterator($this->subscribers);
+    }
+
+    public function count()
+    {
+        return count($this->subscribers);
+    }
 }
