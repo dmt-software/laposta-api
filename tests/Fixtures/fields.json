@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "field": {
+        "field_id": "Z87ysHha9A",
+        "list_id": "BaImMu3JZA",
+        "created": "2012-02-18 11:42:38",
+        "modified": "2012-06-02 14:07:20",
+        "state": "active",
+        "name": "Name",
+        "tag": "{{name}}",
+        "custom_name": "name",
+        "defaultvalue": "reader",
+        "datatype": "text",
+        "required": true,
+        "in_form": true,
+        "in_list": true
+      }
+    },
+    {
+      "field": {
+        "field_id": "9hj8HA_8A2",
+        "list_id": "BaImMu3JZA",
+        "created": "2012-03-28 20:12:02",
+        "modified": "2012-03-28 20:13:10",
+        "state": "active",
+        "name": "Age",
+        "tag": "{{age}}",
+        "custom_name": "age",
+        "defaultvalue": "unknown",
+        "datatype": "date",
+        "required": true,
+        "in_form": true,
+        "in_list": true
+      }
+    }
+  ]
+}

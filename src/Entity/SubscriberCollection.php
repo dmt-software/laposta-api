@@ -22,7 +22,6 @@ class SubscriberCollection implements Collection
         $this->subscribers = $subscribers;
     }
 
-
     public function getIterator()
     {
         return new ArrayIterator($this->subscribers);

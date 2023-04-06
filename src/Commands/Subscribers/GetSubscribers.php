@@ -7,7 +7,7 @@ use DMT\Laposta\Api\Interfaces\Collection;
 use DMT\Laposta\Api\Interfaces\GetRequest;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class GetSubscribers implements GetRequest, Collection
+class GetSubscribers implements GetRequest
 {
     /**
      * @Assert\NotBlank()

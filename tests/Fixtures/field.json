@@ -1,0 +1,18 @@
+{
+  "field": {
+    "field_id": "gt2Em8vJwi",
+    "list_id": "BaImMu3JZA",
+    "created": "2012-02-18 11:42:38",
+    "modified": "2012-06-02 14:07:20",
+    "state": "active",
+    "name": "Name",
+    "tag": "{{name}}",
+    "custom_name": "name",
+    "defaultvalue": "",
+    "datatype": "text",
+    "datatype_display": null,
+    "required": true,
+    "in_form": true,
+    "in_list": true
+  }
+}
