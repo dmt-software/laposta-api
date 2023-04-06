@@ -27,6 +27,10 @@ class UpdateField implements PostRequest, DeserializableResponse
 
     public function getPayload(): object
     {
+        if (!$this->field->listId) {
+            throw new ValidationException('Field listId can not be empty');
+        }
+
         return $this->field;
     }
 
