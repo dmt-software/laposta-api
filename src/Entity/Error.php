@@ -22,21 +22,29 @@ class Error
 {
     /**
      * The type of error.
+     *
+     * @JMS\Type("string")
      */
     public string $type;
 
     /**
      * The human-readable message.
+     *
+     * @JMS\Type("string")
      */
     public string $message;
 
     /**
      * Optional error code (see listing above)
+     *
+     * @JMS\Type("int")
      */
     public ?int $code = null;
 
     /**
      * The parameter it concerns. (optional)
+     *
+     * @JMS\Type("string")
      */
     public ?string $parameter = null;
 }
