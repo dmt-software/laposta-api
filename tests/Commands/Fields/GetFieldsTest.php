@@ -2,9 +2,9 @@
 
 namespace DMT\Test\Laposta\Api\Commands\Fields;
 
-use DMT\Laposta\Api\Commands\Fields\GetFields;
 use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
+use DMT\Laposta\Api\Commands\Fields\GetFields;
 use PHPUnit\Framework\TestCase;
 
 class GetFieldsTest extends TestCase

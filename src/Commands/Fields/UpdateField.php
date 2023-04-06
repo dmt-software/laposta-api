@@ -6,6 +6,8 @@ use DMT\CommandBus\Validator\ValidationException;
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Interfaces\DeserializableResponse;
 use DMT\Laposta\Api\Interfaces\PostRequest;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class UpdateField implements PostRequest, DeserializableResponse
 {
@@ -19,7 +21,18 @@ class UpdateField implements PostRequest, DeserializableResponse
     public function getUri(): string
     {
         if (!$this->field->id) {
-            throw new ValidationException('Field id can not be empty');
+            throw new ValidationException(
+                sprintf('Invalid command %s given', self::class), 0, null, new ConstraintViolationList([
+                    new ConstraintViolation(
+                        'Value can not be empty',
+                        null,
+                        [],
+                        '',
+                        'field.id',
+                        $this->field->id
+                    )
+                ])
+            );
         }
 
         return sprintf('https://api.laposta.nl/v2/field/%s', $this->field->id);
@@ -28,7 +41,18 @@ class UpdateField implements PostRequest, DeserializableResponse
     public function getPayload(): object
     {
         if (!$this->field->listId) {
-            throw new ValidationException('Field listId can not be empty');
+            throw new ValidationException(
+                sprintf('Invalid command %s given', self::class), 0, null, new ConstraintViolationList([
+                    new ConstraintViolation(
+                        'Value can not be empty',
+                        null,
+                        [],
+                        '',
+                        'field.listId',
+                        $this->field->listId
+                    )
+                ])
+            );
         }
 
         return $this->field;

@@ -2,9 +2,9 @@
 
 namespace DMT\Test\Laposta\Api\Commands\Fields;
 
-use DMT\Laposta\Api\Commands\Fields\UpdateField;
 use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
+use DMT\Laposta\Api\Commands\Fields\UpdateField;
 use DMT\Laposta\Api\Entity\Field;
 use PHPUnit\Framework\TestCase;
 
