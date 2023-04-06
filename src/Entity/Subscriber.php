@@ -11,7 +11,6 @@ class Subscriber
     /**
      * The ID of this member object
      *
-     * @JMS\Groups({"Request"})
      * @JMS\Type("string")
      * @JMS\SerializedName("member_id")
      */
@@ -20,7 +19,6 @@ class Subscriber
     /**
      * The ID of the related list
      *
-     * @JMS\Groups({"Request"})
      * @JMS\Type("string")
      * @Assert\NotBlank()
      */
@@ -29,7 +27,6 @@ class Subscriber
     /**
      * The email address
      *
-     * @JMS\Groups({"Request"})
      * @JMS\Type("string")
      * @Assert\Email()
      * @Assert\NotBlank()
@@ -46,6 +43,7 @@ class Subscriber
     /**
      * Date and time of subscription, format YYYY-MM-DD HH:MM:SS
      *
+     * @JMS\Groups({"System"})
      * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
      */
     public ?DateTimeInterface $signupDate = null;
@@ -53,6 +51,7 @@ class Subscriber
     /**
      * Date and time of last modification made, format YYYY-MM-DD HH:MM:SS
      *
+     * @JMS\Groups({"System"})
      * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
      */
     public ?DateTimeInterface $modified = null;
@@ -60,7 +59,6 @@ class Subscriber
     /**
      * IP from which the subscriber is registered
      *
-     * @JMS\Groups({"Request"})
      * @JMS\Type("string")
      */
     public string $ip;
@@ -68,7 +66,6 @@ class Subscriber
     /**
      * URL from which the subscriber is registered
      *
-     * @JMS\Groups({"Request"})
      * @JMS\Type("string")
      */
     public ?string $sourceUrl = null;
@@ -76,7 +73,6 @@ class Subscriber
     /**
      * An object with the value of all additional fields of the corresponding list
      *
-     * @JMS\Groups({"Request"})
      * @JMS\Type("DMT\Laposta\Api\Entity\CustomFields")
      */
     public object $customFields;

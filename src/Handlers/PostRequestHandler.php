@@ -44,7 +44,7 @@ class PostRequestHandler
         $request = $request->withAddedHeader('content-type', 'application/x-www-form-urlencoded');
 
         $context = SerializationContext::create();
-        $context->setGroups('Request');
+        $context->setGroups('Default');
 
         if ($postRequest instanceof CreateSubscriber) {
             $context->setAttribute(

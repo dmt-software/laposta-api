@@ -39,7 +39,7 @@ class SerializableRequestHandler
         $payload = $this->serializer->serialize(
             $postRequest->getObject(),
             'json',
-            SerializationContext::create()->setGroups('Request')
+            SerializationContext::create()->setGroups('Default')
         );
 
         $request->getBody()->write($payload);

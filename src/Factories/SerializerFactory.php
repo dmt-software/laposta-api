@@ -5,6 +5,7 @@ namespace DMT\Laposta\Api\Factories;
 use DMT\Laposta\Api\Config;
 use DMT\Laposta\Api\Interfaces\Factory;
 use DMT\Laposta\Api\Serializer\CustomFieldsDiscriminatorEventSubscriber;
+use DMT\Laposta\Api\Serializer\DateTimeHandler;
 use DMT\Laposta\Api\Serializer\ExistingObjectConstructor;
 use DMT\Laposta\Api\Serializer\FieldOptionsHandler;
 use DMT\Laposta\Api\Serializer\HttpPostSerializerVisitorFactory;
@@ -33,6 +34,7 @@ class SerializerFactory implements Factory
             ->addDefaultHandlers()
             ->configureHandlers(function (HandlerRegistryInterface $registry) {
                 $registry->registerSubscribingHandler(new FieldOptionsHandler());
+                $registry->registerSubscribingHandler(new DateTimeHandler());
             })
             ->setObjectConstructor(new ExistingObjectConstructor(new UnserializeObjectConstructor()))
             ->build();

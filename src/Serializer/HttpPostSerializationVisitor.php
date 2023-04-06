@@ -166,7 +166,7 @@ class HttpPostSerializationVisitor extends AbstractVisitor implements Serializat
         unset($this->navigator);
 
         foreach ($data as &$value) {
-            if (is_array($value) && isset($value[0])) {
+            if (is_array($value) && is_array(current($value))) {
                 $keys = array_map('key', $value);
                 $values = array_map('current', $value);
 
