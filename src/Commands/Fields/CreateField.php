@@ -5,9 +5,13 @@ namespace DMT\Laposta\Api\Commands\Fields;
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Interfaces\PostRequest;
 use DMT\Laposta\Api\Interfaces\DeserializableResponse;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateField implements PostRequest, DeserializableResponse
 {
+    /**
+     * @Assert\Valid()
+     */
     private Field $field;
 
     public function __construct(Field $field)

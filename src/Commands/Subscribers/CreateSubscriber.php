@@ -5,6 +5,7 @@ namespace DMT\Laposta\Api\Commands\Subscribers;
 use DMT\Laposta\Api\Entity\Subscriber;
 use DMT\Laposta\Api\Interfaces\DeserializableResponse;
 use DMT\Laposta\Api\Interfaces\PostRequest;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateSubscriber implements PostRequest, DeserializableResponse
 {
@@ -12,6 +13,9 @@ class CreateSubscriber implements PostRequest, DeserializableResponse
     public const SUPPRESS_EMAIL_WELCOME = 2;
     public const IGNORE_DOUBLEOPTIN = 4;
 
+    /**
+     * @Assert\Valid()
+     */
     private Subscriber $subscriber;
     private int $subscribeOptions;
 
