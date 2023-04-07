@@ -30,7 +30,7 @@ class SubscribeOptionsEventSubscriber implements EventSubscriberInterface
 
         foreach ($event->getContext()->getAttribute(self::ATTRIBUTE) as $key => $value) {
             $event->getVisitor()->visitProperty(
-                new StaticPropertyMetadata(Subscriber::class, $key, $value, ['Request']),
+                new StaticPropertyMetadata(Subscriber::class, $key, $value),
                 $value
             );
         }
