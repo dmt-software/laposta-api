@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnusedAliasInspection */
 
 namespace DMT\Laposta\Api\Commands\Subscribers;
 
@@ -34,7 +34,7 @@ class GetSubscriber implements GetRequest
         return sprintf('https://api.laposta.nl/v2/member/%s', $email ?? $this->identifiedBy);
     }
 
-    public function getQueryString(): ?string
+    public function getQueryString(): string
     {
         return http_build_query(['list_id' => $this->listId]);
     }

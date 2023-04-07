@@ -1,12 +1,12 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands\Fields;
+namespace DMT\Laposta\Api\Commands\MailingList;
 
-use DMT\Laposta\Api\Entity\FieldCollection;
+use DMT\Laposta\Api\Entity\MailingList;
 use DMT\Laposta\Api\Interfaces\GetRequest;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class GetFields implements GetRequest
+class GetMailingList implements GetRequest
 {
     /**
      * @Assert\NotBlank()
@@ -20,16 +20,16 @@ class GetFields implements GetRequest
 
     public function getUri(): string
     {
-        return 'https://api.laposta.nl/v2/field';
+        return sprintf('https://api.laposta.nl/v2/list/%s', $this->listId);
     }
 
     public function getQueryString(): string
     {
-        return http_build_query(['list_id' => $this->listId]);
+        return '';
     }
 
     public function toEntity(): string
     {
-        return FieldCollection::class;
+        return MailingList::class;
     }
 }

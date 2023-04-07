@@ -30,7 +30,7 @@ class GetSubscribers implements GetRequest
         return 'https://api.laposta.nl/v2/member';
     }
 
-    public function getQueryString(): ?string
+    public function getQueryString(): string
     {
         return http_build_query(
             array_filter([

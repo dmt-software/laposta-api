@@ -32,6 +32,8 @@ class DeleteRequestHandler
             $request->getUri()->withQuery($deleteRequest->getQueryString())
         );
 
-        $this->handler->handle($request);
+        $response = $this->handler->handle($request);
+
+        print($response->getBody()->getContents());
     }
 }

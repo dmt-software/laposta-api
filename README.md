@@ -70,6 +70,7 @@ try {
 
 * Field options have some unpredictable behavior when updating a field.
   Find a way to deal with it and/or post a bug report.
+* Empty mailing list (purge subscribers) does not work.
 * Make custom fields deserialization fail-safe when entity is outdated. 
 * Enforce deserialization to stdClass when no custom fields implementation is found.
 * Create Laposta SDK package for managing generating entities, webhooks, pages and/or html forms.

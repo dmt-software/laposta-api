@@ -61,7 +61,7 @@ class Subscriber
      *
      * @JMS\Type("string")
      */
-    public string $ip;
+    public ?string $ip = null;
 
     /**
      * URL from which the subscriber is registered
