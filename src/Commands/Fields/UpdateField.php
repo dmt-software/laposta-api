@@ -55,6 +55,9 @@ class UpdateField implements PostRequest, DeserializableResponse
             );
         }
 
+        /** empty the field options array to ensure a more predictable result */
+        $this->field->options = null;
+
         return $this->field;
     }
 
