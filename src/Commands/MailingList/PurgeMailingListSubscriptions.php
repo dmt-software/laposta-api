@@ -5,7 +5,7 @@ namespace DMT\Laposta\Api\Commands\MailingList;
 use DMT\Laposta\Api\Interfaces\DeleteRequest;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class EmptyMailingList implements DeleteRequest
+class PurgeMailingListSubscriptions implements DeleteRequest
 {
     /**
      * @Assert\NotBlank()

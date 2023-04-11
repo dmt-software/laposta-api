@@ -2,14 +2,16 @@
 
 namespace DMT\Laposta\Api\Clients;
 
+use DMT\Laposta\Api\Commands\MailingList\BulkMailingListSubscriptions;
 use DMT\Laposta\Api\Commands\MailingList\CreateMailingList;
 use DMT\Laposta\Api\Commands\MailingList\DeleteMailingList;
-use DMT\Laposta\Api\Commands\MailingList\EmptyMailingList;
+use DMT\Laposta\Api\Commands\MailingList\PurgeMailingListSubscriptions;
 use DMT\Laposta\Api\Commands\MailingList\GetMailingList;
 use DMT\Laposta\Api\Commands\MailingList\GetMailingLists;
 use DMT\Laposta\Api\Commands\MailingList\UpdateMailingList;
 use DMT\Laposta\Api\Entity\MailingList;
 use DMT\Laposta\Api\Entity\MailingListCollection;
+use DMT\Laposta\Api\Entity\SubscriptionsReport;
 use League\Tactician\CommandBus;
 
 class MailingLists
@@ -48,6 +50,16 @@ class MailingLists
 
     public function empty(string $listId): void
     {
-        $this->commandBus->handle(new EmptyMailingList($listId));
+        $this->commandBus->handle(new PurgeMailingListSubscriptions($listId));
+    }
+
+    public function fill(
+        string $listId,
+        array $subscriptions,
+        int $flags = BulkMailingListSubscriptions::UPDATE
+    ): SubscriptionsReport {
+        return $this->commandBus->handle(
+            new BulkMailingListSubscriptions($listId, $subscriptions, $flags)
+        );
     }
 }

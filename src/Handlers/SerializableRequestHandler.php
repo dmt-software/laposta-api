@@ -37,7 +37,7 @@ class SerializableRequestHandler
         $request = $request->withAddedHeader('content-type', 'application/json');
 
         $payload = $this->serializer->serialize(
-            $postRequest->getObject(),
+            $postRequest,
             'json',
             SerializationContext::create()->setGroups('Default')
         );
