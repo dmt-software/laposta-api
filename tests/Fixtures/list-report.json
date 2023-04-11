@@ -1,0 +1,76 @@
+{
+  "report": {
+    "provided_count": 3,
+    "errors_count": 1,
+    "skipped_count": 1,
+    "edited_count": 0,
+    "added_count": 1
+  },
+  "errors": [
+    {
+      "provided_data": {
+        "email": "member1@example.org"
+      },
+      "error": {
+        "message": "Field my_required_field: cannot be empty",
+        "code": 201,
+        "parameter": "my_required_field",
+        "id": "lRZBQFQdBk",
+        "type": "invalid_input"
+      }
+    }
+  ],
+  "skipped": [
+    {
+      "provided_data": {
+        "member_id": "9978ydioiZ",
+        "email": "member2@example.org",
+        "custom_fields": {
+          "my_optional_field": "My optional value"
+        }
+      },
+      "member": {
+        "member_id": "9978ydioiZ",
+        "list_id": "BaImMu3JZA",
+        "email": "member2@example.org",
+        "state": "active",
+        "signup_date": "2023-01-01 11:58:16",
+        "modified": null,
+        "confirm_date": null,
+        "ip": "198.51.100.10",
+        "source_url": "",
+        "custom_fields": {
+          "my_required_field": "My required field value",
+          "my_optional_field": ""
+        }
+      }
+    }
+  ],
+  "edited": [],
+  "added": [
+    {
+      "provided_data": {
+        "email": "member3@example.org",
+        "custom_fields": {
+          "my_required_field": "My required field value",
+          "my_optional_field": "My optional  value"
+        }
+      },
+      "member": {
+        "member_id": "vnvj2cfQ3a",
+        "list_id": "BaImMu3JZA",
+        "email": "member3@example.org",
+        "state": "active",
+        "signup_date": "2023-02-07 17:29:33",
+        "modified": null,
+        "confirm_date": null,
+        "ip": "198.51.100.10",
+        "source_url": null,
+        "custom_fields": {
+          "my_required_field": "My required field value",
+          "my_optional_field": "My optional  value"
+        }
+      }
+    }
+  ]
+}

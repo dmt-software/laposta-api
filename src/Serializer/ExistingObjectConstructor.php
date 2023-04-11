@@ -25,7 +25,9 @@ class ExistingObjectConstructor implements ObjectConstructorInterface
         array $type,
         DeserializationContext $context
     ): ?object {
-        if ($context->hasAttribute(self::ATTRIBUTE)) {
+        if ($context->hasAttribute(self::ATTRIBUTE)
+            && ($context->getAttribute(self::ATTRIBUTE) instanceof $type['name'])
+        ) {
             return $context->getAttribute(self::ATTRIBUTE);
         }
 

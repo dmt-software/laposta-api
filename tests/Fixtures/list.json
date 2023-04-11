@@ -1,0 +1,17 @@
+{
+  "list": {
+    "list_id": "BaImMu3JZA",
+    "created": "2012-02-18 11:42:38",
+    "modified": "2012-06-02 14:07:20",
+    "state": "active",
+    "name": "Testlist",
+    "remarks": "A list for testing purposes",
+    "subscribe_notification_email": "subscription@example.net",
+    "unsubscribe_notification_email": "unsubscription@example.net",
+    "members": {
+      "active": 1232,
+      "unsubscribed": 113,
+      "cleaned": 14
+    }
+  }
+}
