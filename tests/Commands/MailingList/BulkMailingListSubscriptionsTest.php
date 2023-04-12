@@ -31,11 +31,11 @@ class BulkMailingListSubscriptionsTest extends TestCase
 
     public function invalidCommandProvider(): iterable
     {
-        yield 'empty list id' => [
+        yield 'purge list id' => [
             new BulkMailingListSubscriptions('', [new Subscriber()])
         ];
 
-        yield 'empty list of subscribers' => [
+        yield 'purge list of subscribers' => [
             new BulkMailingListSubscriptions('BaImMu3JZA', [])
         ];
 

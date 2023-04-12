@@ -13,6 +13,10 @@ use League\Tactician\CommandBus;
 
 class Subscribers
 {
+    public const SUPPRESS_EMAIL_NOTIFICATION = CreateSubscriber::SUPPRESS_EMAIL_NOTIFICATION;
+    public const SUPPRESS_EMAIL_WELCOME = CreateSubscriber::SUPPRESS_EMAIL_WELCOME;
+    public const IGNORE_DOUBLEOPTIN = CreateSubscriber::IGNORE_DOUBLEOPTIN;
+
     private CommandBus $commandBus;
 
     public function __construct(CommandBus $commandBus)

@@ -24,7 +24,7 @@ class UpdateField implements PostRequest, DeserializableResponse
             throw new ValidationException(
                 sprintf('Invalid command %s given', self::class), 0, null, new ConstraintViolationList([
                     new ConstraintViolation(
-                        'Value can not be empty',
+                        'Value can not be purge',
                         null,
                         [],
                         '',

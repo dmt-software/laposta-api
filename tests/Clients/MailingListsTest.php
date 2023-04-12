@@ -6,6 +6,7 @@ use DateTimeInterface;
 use DMT\Laposta\Api\Clients\MailingLists;
 use DMT\Laposta\Api\Commands\MailingList\BulkMailingListSubscriptions;
 use DMT\Laposta\Api\Config;
+use DMT\Laposta\Api\Entity\Error;
 use DMT\Laposta\Api\Entity\MailingList;
 use DMT\Laposta\Api\Entity\Subscriber;
 use DMT\Laposta\Api\Factories\CommandBusFactory;
@@ -91,7 +92,7 @@ class MailingListsTest extends TestCase
         $this->expectNotToPerformAssertions();
     }
 
-    public function testEmpty(): void
+    public function testPurge(): void
     {
         $lists = new MailingLists(
             CommandBusFactory::create(
@@ -99,12 +100,12 @@ class MailingListsTest extends TestCase
             )
         );
 
-        $lists->empty('BaImMu3JZA');
+        $lists->purge('BaImMu3JZA');
 
         $this->expectNotToPerformAssertions();
     }
 
-    public function testFill(): void
+    public function testBulk(): void
     {
         $lists = new MailingLists(
             CommandBusFactory::create(
@@ -123,13 +124,14 @@ class MailingListsTest extends TestCase
         $subscribers[2]->customFields = new CustomFields();
         $subscribers[2]->customFields->name = 'set';
 
-        $report = $lists->fill('BaImMu3JZA', $subscribers, BulkMailingListSubscriptions::INSERT);
+        $report = $lists->bulk('BaImMu3JZA', $subscribers, BulkMailingListSubscriptions::INSERT);
 
-        $this->assertSame(3, $report->provided);
-        $this->assertSame(1, $report->errors);
-        $this->assertSame(1, $report->skipped);
-        $this->assertSame(0, $report->edited);
-        $this->assertSame(1, $report->added);
+        $this->assertSame(3, $report->summary->provided);
+        $this->assertSame(1, $report->summary->errors);
+        $this->assertSame(1, $report->summary->skipped);
+        $this->assertSame(0, $report->summary->edited);
+        $this->assertSame(1, $report->summary->added);
+        $this->assertContainsOnlyInstancesOf(Error::class, $report->errors);
     }
 
     private function getTestConfig(string $testResponse): Config

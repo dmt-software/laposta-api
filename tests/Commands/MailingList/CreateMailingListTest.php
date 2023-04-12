@@ -39,7 +39,7 @@ class CreateMailingListTest extends TestCase
         $mailingList = new MailingList();
         $mailingList->name = '';
 
-        yield 'empty list name' => [$mailingList];
+        yield 'purge list name' => [$mailingList];
 
         $mailingList = new MailingList();
         $mailingList->name = 'Test list';

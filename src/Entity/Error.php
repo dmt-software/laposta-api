@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Class Error
  *
- * 201    The parameter is empty
+ * 201    The parameter is purge
  * 202    The syntax of the parameter is incorrect
  * 203    The parameter is unknown
  * 204    The parameter already exists
@@ -47,4 +47,11 @@ class Error
      * @JMS\Type("string")
      */
     public ?string $parameter = null;
+
+    /**
+     * The concerned subscriber's email or member_id (only in case of bulk insert/update)
+     *
+     * @JMS\Type("string")
+     */
+    public ?string $identification = null;
 }

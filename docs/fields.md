@@ -12,7 +12,7 @@
 ## Modifying options
 
 Always use the options_full when the options need to change for a field.
-To add one option to the existing options of a field, you need to post the exising options and add an extra option.
+To add one option to the existing options of a field, you need to post the existing options and add an extra option.
 For this option the id can be empty. When more than one option is to be added to the field options, the new options 
 can be added by setting an unique negative id.
 

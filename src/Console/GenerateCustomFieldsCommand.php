@@ -62,7 +62,7 @@ class GenerateCustomFieldsCommand extends Command
             );
         } catch (ClientExceptionInterface $exception) {
             $output->writeln('  > error retrieving fields');
-var_dump($exception->getError());
+
             return Command::FAILURE;
         }
 

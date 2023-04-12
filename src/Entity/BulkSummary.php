@@ -4,7 +4,7 @@ namespace DMT\Laposta\Api\Entity;
 
 use JMS\Serializer\Annotation as JMS;
 
-class SubscriptionsReport
+class BulkSummary
 {
     /**
      * @JMS\SerializedName("provided_count")

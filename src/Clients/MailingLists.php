@@ -11,11 +11,14 @@ use DMT\Laposta\Api\Commands\MailingList\GetMailingLists;
 use DMT\Laposta\Api\Commands\MailingList\UpdateMailingList;
 use DMT\Laposta\Api\Entity\MailingList;
 use DMT\Laposta\Api\Entity\MailingListCollection;
-use DMT\Laposta\Api\Entity\SubscriptionsReport;
+use DMT\Laposta\Api\Entity\BulkReport;
 use League\Tactician\CommandBus;
 
 class MailingLists
 {
+    public const BULK_INSERT = BulkMailingListSubscriptions::INSERT;
+    public const BULK_UPDATE = BulkMailingListSubscriptions::UPDATE;
+
     private CommandBus $commandBus;
 
     public function __construct(CommandBus $commandBus)
@@ -48,18 +51,13 @@ class MailingLists
         $this->commandBus->handle(new DeleteMailingList($listId));
     }
 
-    public function empty(string $listId): void
+    public function purge(string $listId): void
     {
         $this->commandBus->handle(new PurgeMailingListSubscriptions($listId));
     }
 
-    public function fill(
-        string $listId,
-        array $subscriptions,
-        int $flags = BulkMailingListSubscriptions::UPDATE
-    ): SubscriptionsReport {
-        return $this->commandBus->handle(
-            new BulkMailingListSubscriptions($listId, $subscriptions, $flags)
-        );
+    public function bulk(string $listId, array $subscriptions, int $flags = self::BULK_UPDATE): BulkReport
+    {
+        return $this->commandBus->handle(new BulkMailingListSubscriptions($listId, $subscriptions, $flags));
     }
 }
