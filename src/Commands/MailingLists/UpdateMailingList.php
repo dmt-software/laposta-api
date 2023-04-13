@@ -1,6 +1,6 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands\MailingList;
+namespace DMT\Laposta\Api\Commands\MailingLists;
 
 use DMT\CommandBus\Validator\ValidationException;
 use DMT\Laposta\Api\Entity\MailingList;

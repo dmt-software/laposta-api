@@ -4,13 +4,13 @@ namespace DMT\Laposta\Api\Entity;
 
 use JMS\Serializer\Annotation as JMS;
 
-class BulkReport
+class SubscriptionsReport
 {
     /**
-     * @JMS\Type("DMT\Laposta\Api\Entity\BulkSummary")
+     * @JMS\Type("DMT\Laposta\Api\Entity\ReportSummary")
      * @JMS\SerializedName("report")
      */
-    public BulkSummary $summary;
+    public ReportSummary $summary;
 
     /**
      * @JMS\Type("array<DMT\Laposta\Api\Entity\Error>")

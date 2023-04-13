@@ -1,11 +1,11 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands\MailingList;
+namespace DMT\Laposta\Api\Commands\MailingLists;
 
 use DMT\Laposta\Api\Interfaces\DeleteRequest;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class DeleteMailingList implements DeleteRequest
+class PurgeMailingListSubscriptions implements DeleteRequest
 {
     /**
      * @Assert\NotBlank()
@@ -19,7 +19,7 @@ class DeleteMailingList implements DeleteRequest
 
     public function getUri(): string
     {
-        return sprintf('https://api.laposta.nl/v2/list/%s', $this->listId);
+        return sprintf('https://api.laposta.nl/v2/list/%s/members', $this->listId);
     }
 
     public function getQueryString(): string

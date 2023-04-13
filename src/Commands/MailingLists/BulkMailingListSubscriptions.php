@@ -1,9 +1,9 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands\MailingList;
+namespace DMT\Laposta\Api\Commands\MailingLists;
 
 use DMT\Laposta\Api\Entity\Subscriber;
-use DMT\Laposta\Api\Entity\BulkReport;
+use DMT\Laposta\Api\Entity\SubscriptionsReport;
 use DMT\Laposta\Api\Interfaces\DeserializableResponse;
 use DMT\Laposta\Api\Interfaces\SerializableRequest;
 use JMS\Serializer\Annotation as JMS;
@@ -70,6 +70,6 @@ class BulkMailingListSubscriptions implements SerializableRequest, Deserializabl
 
     public function toEntity(): string
     {
-        return BulkReport::class;
+        return SubscriptionsReport::class;
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace DMT\Test\Laposta\Api\Commands\MailingList;
+namespace DMT\Test\Laposta\Api\Commands\MailingLists;
 
 use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
-use DMT\Laposta\Api\Commands\MailingList\PurgeMailingListSubscriptions;
+use DMT\Laposta\Api\Commands\MailingLists\PurgeMailingListSubscriptions;
 use PHPUnit\Framework\TestCase;
 
 class PurgeMailingListSubscriptionsTest extends TestCase

@@ -4,7 +4,7 @@ namespace DMT\Test\Laposta\Api\Clients;
 
 use DateTimeInterface;
 use DMT\Laposta\Api\Clients\MailingLists;
-use DMT\Laposta\Api\Commands\MailingList\BulkMailingListSubscriptions;
+use DMT\Laposta\Api\Commands\MailingLists\BulkMailingListSubscriptions;
 use DMT\Laposta\Api\Config;
 use DMT\Laposta\Api\Entity\Error;
 use DMT\Laposta\Api\Entity\MailingList;

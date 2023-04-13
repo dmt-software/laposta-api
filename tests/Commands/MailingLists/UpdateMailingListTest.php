@@ -1,17 +1,21 @@
 <?php
 
-namespace DMT\Test\Laposta\Api\Commands\MailingList;
+namespace DMT\Test\Laposta\Api\Commands\MailingLists;
 
 use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
-use DMT\Laposta\Api\Commands\MailingList\GetMailingList;
+use DMT\Laposta\Api\Commands\MailingLists\UpdateMailingList;
+use DMT\Laposta\Api\Entity\MailingList;
 use PHPUnit\Framework\TestCase;
 
-class GetMailingListTest extends TestCase
+class UpdateMailingListTest extends TestCase
 {
     public function testValidCommand(): void
     {
-        $command = new GetMailingList('BaImMu3JZA');
+        $mailingList = new MailingList();
+        $mailingList->id = 'BaImMu3JZA';
+
+        $command = new UpdateMailingList($mailingList);
 
         $validator = new ValidationMiddleware();
         $this->assertTrue($validator->execute($command, fn() => true));
@@ -22,6 +26,6 @@ class GetMailingListTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $validator = new ValidationMiddleware();
-        $validator->execute(new GetMailingList(''), fn() => true);
+        $validator->execute(new UpdateMailingList(new MailingList()), fn($command) => $command->getUri());
     }
 }

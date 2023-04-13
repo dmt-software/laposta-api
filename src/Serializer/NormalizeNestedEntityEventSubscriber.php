@@ -6,6 +6,7 @@ use DMT\Laposta\Api\Entity\Error;
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Entity\MailingList;
 use DMT\Laposta\Api\Entity\Subscriber;
+use DMT\Laposta\Api\Entity\Webhook;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
 
@@ -14,7 +15,8 @@ class NormalizeNestedEntityEventSubscriber implements EventSubscriberInterface
     public const ENTITIES = [
         Field::class,
         MailingList::class,
-        Subscriber::class
+        Subscriber::class,
+        Webhook::class,
     ];
 
     public static function getSubscribedEvents(): iterable

@@ -1,10 +1,10 @@
 <?php
 
-namespace DMT\Test\Laposta\Api\Commands\MailingList;
+namespace DMT\Test\Laposta\Api\Commands\MailingLists;
 
 use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
-use DMT\Laposta\Api\Commands\MailingList\BulkMailingListSubscriptions;
+use DMT\Laposta\Api\Commands\MailingLists\BulkMailingListSubscriptions;
 use DMT\Laposta\Api\Entity\Subscriber;
 use PHPUnit\Framework\TestCase;
 
