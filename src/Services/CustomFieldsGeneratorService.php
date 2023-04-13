@@ -38,7 +38,7 @@ class CustomFieldsGeneratorService
             $prop = new PropertyBinding();
             $prop->name = $field->customName;
             $prop->required = $field->required;
-            $prop->default = $field->defaultvalue;
+            $prop->default = $field->defaultvalue !== '' ? $field->defaultvalue : null;
 
             if (strpos($field->datatype, 'select') === 0 && !in_array($prop->default, (array)$field->options, true)) {
                 $prop->default = null;
@@ -46,6 +46,7 @@ class CustomFieldsGeneratorService
             if ($prop->default && $prop->type !== 'numeric') {
                 $prop->default = sprintf("'%s'", $prop->default);
             }
+
 
             if ($field->datatype == 'date') {
                 $prop->type = DateTime::class;
