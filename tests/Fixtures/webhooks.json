@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "webhook": {
+        "webhook_id": "8HdlEGtlml",
+        "list_id": "BaImMu3JZA",
+        "created": "2012-10-31 17:11:15",
+        "modified": null,
+        "state": "active",
+        "event": "modified",
+        "url": "http://example.com/laposta.php",
+        "blocked": false
+      }
+    },
+    {
+      "webhook": {
+        "webhook_id": "mh7Qao0_lR",
+        "list_id": "BaImMu3JZA",
+        "created": "2012-09-20 14:20:14",
+        "modified": null,
+        "state": "active",
+        "event": "subscibed",
+        "url": "http://example.com/laposta.php",
+        "blocked": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "webhook": {
+    "webhook_id": "cW5ls8IVJl",
+    "list_id": "BaImMu3JZA",
+    "created": "2012-10-31 17:03:21",
+    "modified": "2012-10-31 17:12:08",
+    "state": "active",
+    "event": "subscribed",
+    "url": "http://example.net/webhook.asp",
+    "blocked": false
+  }
+}
