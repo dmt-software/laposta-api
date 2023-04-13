@@ -8,6 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Webhook
 {
+    public const EVENT_SUBSCRIBED = 'subscribed';
+    public const EVENT_MODIFIED = 'modified';
+    public const EVENT_DEACTIVATED = 'deactivated';
+
     /**
      * The ID of this webhook
      *

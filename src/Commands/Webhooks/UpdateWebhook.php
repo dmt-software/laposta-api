@@ -1,26 +1,26 @@
 <?php
 
-namespace DMT\Laposta\Api\Commands\Fields;
+namespace DMT\Laposta\Api\Commands\Webhooks;
 
 use DMT\CommandBus\Validator\ValidationException;
-use DMT\Laposta\Api\Entity\Field;
+use DMT\Laposta\Api\Entity\Webhook;
 use DMT\Laposta\Api\Interfaces\DeserializableResponse;
 use DMT\Laposta\Api\Interfaces\PostRequest;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationList;
 
-class UpdateField implements PostRequest, DeserializableResponse
+class UpdateWebhook implements PostRequest, DeserializableResponse
 {
-    private Field $field;
+    private Webhook $webhook;
 
-    public function __construct(Field $field)
+    public function __construct(Webhook $webhook)
     {
-        $this->field = $field;
+        $this->webhook = $webhook;
     }
 
     public function getUri(): string
     {
-        if (!$this->field->id) {
+        if (!$this->webhook->id) {
             throw new ValidationException(
                 sprintf('Invalid command %s given', self::class), 0, null, new ConstraintViolationList([
                     new ConstraintViolation(
@@ -28,19 +28,19 @@ class UpdateField implements PostRequest, DeserializableResponse
                         null,
                         [],
                         '',
-                        'field.id',
-                        $this->field->id
+                        'webhook.id',
+                        $this->webhook->id
                     )
                 ])
             );
         }
 
-        return sprintf('https://api.laposta.nl/v2/field/%s', $this->field->id);
+        return sprintf('https://api.laposta.nl/v2/webhook/%s', $this->webhook->id);
     }
 
     public function getPayload(): object
     {
-        if (!$this->field->listId) {
+        if (!$this->webhook->listId) {
             throw new ValidationException(
                 sprintf('Invalid command %s given', self::class), 0, null, new ConstraintViolationList([
                     new ConstraintViolation(
@@ -48,21 +48,18 @@ class UpdateField implements PostRequest, DeserializableResponse
                         null,
                         [],
                         '',
-                        'field.listId',
-                        $this->field->listId
+                        'webhook.listId',
+                        $this->webhook->listId
                     )
                 ])
             );
         }
 
-        /** empty the field options array to ensure a more predictable result */
-        $this->field->options = null;
-
-        return $this->field;
+        return $this->webhook;
     }
 
     public function toEntity(): string
     {
-        return Field::class;
+        return Webhook::class;
     }
 }
