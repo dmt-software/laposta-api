@@ -26,6 +26,8 @@ class CreateMailingList implements PostRequest, DeserializableResponse
 
     public function getPayload(): object
     {
+        $this->mailingList->id = null;
+
         return $this->mailingList;
     }
 

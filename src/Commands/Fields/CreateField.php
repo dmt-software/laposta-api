@@ -26,6 +26,9 @@ class CreateField implements PostRequest, DeserializableResponse
 
     public function getPayload(): Field
     {
+        $this->field->id = null;
+        $this->field->optionsFull = null;
+
         return $this->field;
     }
 

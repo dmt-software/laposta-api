@@ -73,8 +73,8 @@ class Subscriber
     /**
      * An object with the value of all additional fields of the corresponding list
      *
-     * @JMS\Type("DMT\Laposta\Api\Entity\CustomFields")
+     * @JMS\Type("DMT\Laposta\Api\Entity\BaseCustomFields")
      * @Assert\Valid()
      */
-    public object $customFields;
+    public BaseCustomFields $customFields;
 }

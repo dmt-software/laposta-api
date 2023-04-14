@@ -26,6 +26,8 @@ class CreateWebhook implements PostRequest, DeserializableResponse
 
     public function getPayload(): object
     {
+        $this->webhook->id = null;
+
         return $this->webhook;
     }
 

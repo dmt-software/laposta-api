@@ -4,7 +4,7 @@ namespace DMT\Laposta\Api\Factories;
 
 use DMT\Laposta\Api\Config;
 use DMT\Laposta\Api\Interfaces\Factory;
-use DMT\Laposta\Api\Serializer\CustomFieldsDiscriminatorEventSubscriber;
+use DMT\Laposta\Api\Serializer\CustomFieldsEventSubscriber;
 use DMT\Laposta\Api\Serializer\DateTimeHandler;
 use DMT\Laposta\Api\Serializer\ExistingObjectConstructor;
 use DMT\Laposta\Api\Serializer\FieldOptionsHandler;
@@ -28,7 +28,7 @@ class SerializerFactory implements Factory
             ->addDefaultListeners()
             ->configureListeners(function (EventDispatcherInterface $dispatcher) use ($config) {
                 $dispatcher->addSubscriber(new NormalizeNestedEntityEventSubscriber());
-                $dispatcher->addSubscriber(new CustomFieldsDiscriminatorEventSubscriber($config));
+                $dispatcher->addSubscriber(new CustomFieldsEventSubscriber($config));
                 $dispatcher->addSubscriber(new SubscribeOptionsEventSubscriber());
             })
             ->addDefaultHandlers()

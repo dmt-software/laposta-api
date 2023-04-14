@@ -13,7 +13,7 @@ namespace <?= $class->namespace ?>;
 <?php if (array_filter($class->properties, fn($property) => $property->type == \DateTime::class)): ?>
 use DateTime;
 <?php endif ?>
-use DMT\Laposta\Api\Entity\CustomFields as BaseCustomFields;
+use DMT\Laposta\Api\Entity\BaseCustomFields;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 

@@ -3,7 +3,7 @@
 namespace DMT\Test\Laposta\Api\Fixtures;
 
 use DateTime;
-use DMT\Laposta\Api\Entity\CustomFields as BaseCustomFields;
+use DMT\Laposta\Api\Entity\BaseCustomFields;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
 

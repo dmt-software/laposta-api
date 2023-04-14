@@ -114,7 +114,6 @@ class Field
      * An array of the available options, including IDs (only for select_single or select_multiple)
      *
      * @JMS\Type("array<DMT\Laposta\Api\Entity\Option>")
-     * @Assert\IsNull()
      *
      * @var array<\DMT\Laposta\Api\Entity\Option>
      */

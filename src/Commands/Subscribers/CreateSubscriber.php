@@ -32,6 +32,8 @@ class CreateSubscriber implements PostRequest, DeserializableResponse
 
     public function getPayload(): object
     {
+        $this->subscriber->id = null;
+
         return $this->subscriber;
     }
 
