@@ -58,7 +58,10 @@ $subscriber->customFields->name = 'John Do';
 
 * `all(list_id)` - to retrieve all subscribers to a list
 * `get(list_id, identifier)` - to retrieve one subscriber from a list, using email or member ID
-* `create(subscriber)` - to add a subscriber to a list
+* `create(subscriber, flags)` - to add a subscriber to a list, the flags can be used to override subscribe behavior
+  * `Subscriber::OPTION_SUPPRESS_EMAIL_NOTIFICATION` - to ensure no notification is sent
+  * `Subscriber::OPTION_SUPPRESS_EMAIL_WELCOME` - to ensure no welcome mail is sent 
+  * `Subscriber::OPTION_IGNORE_DOUBLEOPTIN` - to ignore the subscriber needs to verify their subscription 
 * `update(subscriber)` - to modify a list's subscriber
 * `delete(list_id, identifier)` - to delete a field from list, using email or member ID
 
