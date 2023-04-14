@@ -12,5 +12,5 @@ class CustomFields extends BaseCustomFields
      *
      * @var null|array<\DMT\Laposta\Api\Entity\CustomField>
      */
-    public ?array $_field = null;
+    public ?array $field = null;
 }

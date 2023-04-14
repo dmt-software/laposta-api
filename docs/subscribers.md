@@ -21,9 +21,9 @@ $subscriber = new Subscriber();
 $subscriber->email = 'user@example.org';
 $subscriber->listId = 'BaImMu3JZA';
 $subscriber->customFields = new CustomFields();
-$subscriber->customFields->_field[0] = new CustomField();
-$subscriber->customFields->_field[0]->name = 'name';
-$subscriber->customFields->_field[0]->value = 'John Do';
+$subscriber->customFields->field[0] = new CustomField();
+$subscriber->customFields->field[0]->name = 'name';
+$subscriber->customFields->field[0]->value = 'John Do';
 ```
 
 ### Generated CustomFields
