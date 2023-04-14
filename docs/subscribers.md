@@ -56,6 +56,12 @@ $subscriber->customFields->name = 'John Do';
 
 ## Usage
 
+* `all(list_id)` - to retrieve all subscribers to a list
+* `get(list_id, identifier)` - to retrieve one subscriber from a list, using email or member ID
+* `create(subscriber)` - to add a subscriber to a list
+* `update(subscriber)` - to modify a list's subscriber
+* `delete(list_id, identifier)` - to delete a field from list, using email or member ID
+
 ### Create Subscriber
 
 ```php
@@ -77,7 +83,7 @@ try {
 } catch (ValidationException $exception) {
      // input was wrong 
 } catch (ClientExceptionInterface $exception) {
-    // not found or error response
+    // error response
 }
 ```
 
@@ -98,7 +104,6 @@ try {
 ### Update Subscriber
 
 ```php
-use DMT\CommandBus\Validator\ValidationException;
 use DMT\Laposta\Api\Clients\Subscribers;
 use DMT\Laposta\Api\Entity\Subscriber;
 use DMT\Laposta\Api\Exceptions\NotFoundException;

@@ -22,7 +22,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 
 try {
     /** @var Subscribers $client */
-    $subscribers = $client->all('BaImMu3JZA', 'user@example.com');
+    $subscriber = $client->get('BaImMu3JZA', 'user@example.com');
 } catch (ValidationException $exception) {
      // input was wrong 
 } catch (ClientExceptionInterface $exception) {
@@ -30,4 +30,3 @@ try {
 }
 ```
 
-> See the [API subscribers](/docs/subscribers.md) for more usage examples.
