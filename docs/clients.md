@@ -26,13 +26,13 @@ class CustomerMailingService
      * 
      * @param \DMT\Laposta\Api\Entity\Subscriber $subscriber
      *
-     * @return string The id of the added subscriber
+     * @return string The the added subscriber
      */
-    public function createSubscriber(Subscriber $subscriber): string
+    public function createSubscriber(Subscriber $subscriber): Subscriber
     {
         $this->client->update($subscriber);
         
-        return $subscriber->id;
+        return $subscriber;
     }
 }
 ```
