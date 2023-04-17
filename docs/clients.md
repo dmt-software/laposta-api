@@ -30,7 +30,7 @@ class CustomerMailingService
      */
     public function createSubscriber(Subscriber $subscriber): Subscriber
     {
-        $this->client->update($subscriber);
+        $this->client->insert($subscriber);
         
         return $subscriber;
     }
