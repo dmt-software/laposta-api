@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "type": "member",
+      "event": "deactivated",
+      "data": {
+        "member_id": "9978ydioiZ",
+        "list_id": "BaImMu3JZA",
+        "email": "maartje@example.net",
+        "state": "deleted",
+        "signup_date": "2012-08-13 16:13:07",
+        "ip": "198.51.100.10",
+        "source_url": "http://example.com",
+        "custom_fields": {
+          "name": "Maartje de Vries - Abbink",
+          "dateofbirth": "1973-05-10 00:00:00",
+          "children": 3,
+          "prefs": [
+            "optionA",
+            "optionB"
+          ]
+        }
+      },
+      "info": {
+        "source": "app",
+        "action": "deleted",
+        "date_event": "2012-08-17 20:56:31"
+      }
+    }
+  ],
+  "date_requested": "2012-08-17 20:56:34"
+}

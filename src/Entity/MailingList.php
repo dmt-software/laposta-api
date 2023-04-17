@@ -72,7 +72,7 @@ class MailingList
     public ?string $unsubscribeNotificationEmail = null;
 
     /**
-     * Information in regards to the number of active, unsubscribed and cleaned (deleted) members
+     * Information regarding the number of active, unsubscribed and cleaned (deleted) members
      *
      * @JMS\Groups({"System"})
      * @JMS\SerializedName("members")

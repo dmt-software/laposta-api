@@ -3,6 +3,7 @@
 namespace DMT\Laposta\Api\Serializer;
 
 use DMT\Laposta\Api\Entity\Error;
+use DMT\Laposta\Api\Entity\Event;
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Entity\MailingList;
 use DMT\Laposta\Api\Entity\Subscriber;
@@ -21,6 +22,14 @@ class NormalizeNestedEntityEventSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents(): iterable
     {
+        yield [
+            'event' => 'serializer.pre_deserialize',
+            'method' => 'normalizeEventEntry',
+            'class' => Event::class,
+            'format' => 'json',
+            'priority' => 100,
+        ];
+
         foreach (self::ENTITIES as $entityClass) {
             yield [
                 'event' => 'serializer.pre_deserialize',
@@ -38,6 +47,16 @@ class NormalizeNestedEntityEventSubscriber implements EventSubscriberInterface
             'format' => 'json',
             'priority' => 100,
         ];
+    }
+
+    public function normalizeEventEntry(PreDeserializeEvent $event): void
+    {
+        $data = $event->getData();
+
+        if (array_key_exists('data', $data)) {
+            $data['data'] = ['subscriber' => $data['data']];
+            $event->setData($data);
+        }
     }
 
     public function normalizeEntityEntry(PreDeserializeEvent $event): void
