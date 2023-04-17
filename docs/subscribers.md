@@ -1,5 +1,5 @@
 # Subscribers
-#
+
 ## Subscriber Entity
 
 The member object in the API is handled by the Subscriber Entity.

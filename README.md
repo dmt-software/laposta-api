@@ -44,3 +44,5 @@ try {
 }
 ```
 
+More on how to use this package can be found in the client [documentation](/docs/clients.md).
+
