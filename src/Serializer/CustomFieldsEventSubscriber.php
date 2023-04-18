@@ -57,7 +57,7 @@ class CustomFieldsEventSubscriber implements EventSubscriberInterface
 
         if (array_key_exists($listId, $this->config->customFieldsClasses)) {
             $data['custom_fields']['list_id'] = $data['list_id'];
-        } else {
+        } elseif (array_key_exists('custom_fields', $data)) {
             $result = [];
             foreach ($data['custom_fields'] as $name => $value) {
                 $result[] = compact('name', 'value');
