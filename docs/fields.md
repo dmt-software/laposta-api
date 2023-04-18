@@ -56,8 +56,8 @@ try {
 ### Update Field
 
 Always use the options_full when the options need to change for a field.
-To add one option to the existing options of a field, you need to post the existing options and add an extra option.
-For this option the id can be empty. (Currently it is not possible to add more than one option at a time)
+To add one option to the existing options of a field, you need to post all the existing options and add the extra 
+options without id.
 
 ```php
 use DMT\Laposta\Api\Clients\Fields;

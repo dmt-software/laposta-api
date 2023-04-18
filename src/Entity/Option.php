@@ -11,7 +11,7 @@ class Option
      *
      * @JMS\Type("int")
      */
-    public int $id = 0;
+    public ?int $id = null;
 
     /**
      * The value for the option

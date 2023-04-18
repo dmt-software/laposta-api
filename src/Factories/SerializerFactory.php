@@ -7,6 +7,7 @@ use DMT\Laposta\Api\Interfaces\Factory;
 use DMT\Laposta\Api\Serializer\CustomFieldsEventSubscriber;
 use DMT\Laposta\Api\Serializer\DateTimeHandler;
 use DMT\Laposta\Api\Serializer\ExistingObjectConstructor;
+use DMT\Laposta\Api\Serializer\FieldOptionsEventSubscriber;
 use DMT\Laposta\Api\Serializer\FieldOptionsHandler;
 use DMT\Laposta\Api\Serializer\HttpPostSerializerVisitorFactory;
 use DMT\Laposta\Api\Serializer\NormalizeNestedEntityEventSubscriber;
@@ -27,6 +28,7 @@ class SerializerFactory implements Factory
             ->setSerializationVisitor('http-post', new HttpPostSerializerVisitorFactory())
             ->addDefaultListeners()
             ->configureListeners(function (EventDispatcherInterface $dispatcher) use ($config) {
+                $dispatcher->addSubscriber(new FieldOptionsEventSubscriber());
                 $dispatcher->addSubscriber(new NormalizeNestedEntityEventSubscriber());
                 $dispatcher->addSubscriber(new CustomFieldsEventSubscriber($config));
                 $dispatcher->addSubscriber(new SubscribeOptionsEventSubscriber());
