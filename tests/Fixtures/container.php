@@ -9,7 +9,7 @@ return new class() implements ContainerInterface
         return $id::load(__DIR__ . '/config.php');
     }
 
-    public function has(string $id)
+    public function has(string $id): bool
     {
         return true;
     }

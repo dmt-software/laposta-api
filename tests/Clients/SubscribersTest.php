@@ -37,7 +37,7 @@ class SubscribersTest extends TestCase
         );
 
         $subscriber = $subscribers->get('BaImMu3JZA', '9978ydioiZ');
-var_export($subscriber);
+
         $this->assertSame('9978ydioiZ', $subscriber->id);
         $this->assertSame('BaImMu3JZA', $subscriber->listId);
     }

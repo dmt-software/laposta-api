@@ -31,6 +31,7 @@
     }
   },
   "require-dev": {
+    "psr/container": ">=1.1",
     "phpunit/phpunit": "9.6.6",
     "guzzlehttp/psr7": "^2.4",
     "guzzlehttp/guzzle": "^7.5"
