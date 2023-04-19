@@ -30,12 +30,12 @@ class EventCollection implements Collection
         $this->events = $events;
     }
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->events);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->events);
     }

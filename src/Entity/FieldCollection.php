@@ -22,12 +22,12 @@ class FieldCollection implements Collection
         $this->fields = $fields;
     }
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->fields);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->fields);
     }
