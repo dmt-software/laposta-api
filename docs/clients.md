@@ -7,11 +7,10 @@
 * [Subscribers](/docs/mailing-lists.md)
 * [Webhooks](/docs/mailing-lists.md)
 
-## Methods returning void
+## Returning void
 
-The clients do not return the data on create, update or delete actions, instead
-they might update the object send to the server. To mimic returning the server response the handled object can be 
-returned.
+The clients do not return the data on create, update or delete actions, instead in most cases they update the object 
+send to the server. To mimic returning the server response the handled object can be returned.
 
 ```php
 use DMT\Laposta\Api\Clients\Subscribers;
@@ -26,7 +25,7 @@ class CustomerMailingService
      * 
      * @param \DMT\Laposta\Api\Entity\Subscriber $subscriber
      *
-     * @return string The the added subscriber
+     * @return string The added subscriber
      */
     public function createSubscriber(Subscriber $subscriber): Subscriber
     {

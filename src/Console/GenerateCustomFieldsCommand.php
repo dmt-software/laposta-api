@@ -32,13 +32,12 @@ class GenerateCustomFieldsCommand extends Command
         $output->writeln('----------------------------------------------------------------');
         $output->writeln(' Generate custom fields:');
 
-        $bootstrap = $input->getArgument('config');
-        if (!is_file($bootstrap) || !is_array($configArray = @include($bootstrap))) {
+        $config = Config::load($input->getArgument('config'));
+        if (!$config instanceof Config) {
             $output->writeln('  > config not loaded');
 
             return Command::FAILURE;
         }
-        $config = Config::fromArray($configArray);
 
         if (!$input->getOption('list-id')) {
             $output->writeln('  > no list id provided');
