@@ -2,10 +2,10 @@
 
 ## API Clients
 
-* [Fields](/docs/mailing-lists.md)
+* [Fields](/docs/fields.md)
 * [Mailing Lists](/docs/mailing-lists.md)
-* [Subscribers](/docs/mailing-lists.md)
-* [Webhooks](/docs/mailing-lists.md)
+* [Subscribers](/docs/subscribers.md)
+* [Webhooks](/docs/webhooks.md)
 
 ## Returning void
 
