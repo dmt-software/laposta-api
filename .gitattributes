@@ -1,6 +1,8 @@
 # exclude
 .gitattributes  export-ignore
 */.gitkeep      export-ignore
+tests           export-ignore
+phpunit.xml     export-ignore
 
 # diff
 *.php diff=php
