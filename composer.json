@@ -22,7 +22,7 @@
     "dmt-software/http-client-middleware": "^0.1",
     "league/tactician": "^1.0",
     "jms/serializer": "^3.23",
-    "symfony/console": "^5.4",
+    "symfony/console": ">=5.4",
     "dmt-software/command-bus-validator": "^1.0"
   },
   "autoload-dev": {
