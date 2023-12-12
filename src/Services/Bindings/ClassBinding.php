@@ -24,7 +24,7 @@ class ClassBinding
         $this->name = $name;
 
         if (preg_match('~^(.*)\\\\([^\\\\]+)$~', $name, $match)) {
-            [$this->name, $this->namespace, $this->name] = $match;
+            [$this->namespace, $this->name] = [$match[1], $match[2]];
         }
     }
 }
