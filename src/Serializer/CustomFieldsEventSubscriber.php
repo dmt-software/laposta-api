@@ -9,6 +9,7 @@ use DMT\Laposta\Api\Entity\CustomFields;
 use DMT\Laposta\Api\Entity\Subscriber;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
+use JMS\Serializer\Metadata\PropertyMetadata;
 
 class CustomFieldsEventSubscriber implements EventSubscriberInterface
 {
@@ -77,6 +78,23 @@ class CustomFieldsEventSubscriber implements EventSubscriberInterface
         $listId = $data['list_id'] ?? '';
 
         $event->setType($this->config->customFieldsClasses[$listId] ?? CustomFields::class);
+
+        if (!array_key_exists($listId, $this->config->customFieldsClasses)) {
+            return;
+        }
+
+        $metadata = $event->getContext()
+            ->getMetadataFactory()
+            ->getMetadataForClass($this->config->customFieldsClasses[$listId]);
+
+        /** @var PropertyMetadata $property */
+        foreach ($metadata->propertyMetadata as $property) {
+            if ($property->type['name'] === 'DateTime' && $data[$property->serializedName] === '') {
+                $data[$property->serializedName] = null;
+            }
+        }
+
+        $event->setData($data);
     }
 
     /**
@@ -86,10 +104,13 @@ class CustomFieldsEventSubscriber implements EventSubscriberInterface
     {
         $metadata = $event->getContext()->getMetadataFactory()->getMetadataForClass(CustomField::class);
 
+        /** @var array<string, PropertyMetadata> $propertyMetadata */
+        $propertyMetadata = $metadata->propertyMetadata;
+
         if (is_array($event->getData()['value'] ?? null)) {
-            $metadata->propertyMetadata['value']->type = ['name' => 'array', 'params' => []];
+            $propertyMetadata['value']->type = ['name' => 'array', 'params' => []];
         } else {
-            $metadata->propertyMetadata['value']->type = ['name' => 'string', 'params' => []];
+            $propertyMetadata['value']->type = ['name' => 'string', 'params' => []];
         }
     }
 }
