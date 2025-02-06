@@ -76,7 +76,8 @@ class ExceptionMiddlewareTest extends TestCase
 
         return [
             'incorrect email' => [
-                $response->withStatus(400, 'Bad Request'), [
+                $response->withStatus(400, 'Bad Request'),
+                [
                     'type' => 'invalid_input',
                     'message' => 'Email: invalid address',
                     'code' => 208,
@@ -84,15 +85,63 @@ class ExceptionMiddlewareTest extends TestCase
                 ]
             ],
             'unauthorized request' => [
-                $response->withStatus(401, 'Unauthorized'), [
+                $response->withStatus(401, 'Unauthorized'),
+                [
                     'type' => 'invalid_request',
                     'message' => 'No valid API key was provided',
                 ]
             ],
             'server error' => [
-                $response->withStatus(500, 'Server Error'), [
+                $response->withStatus(500, 'Server Error'),
+                [
                     'type' => 'internal',
                     'message' => 'temporary unavailable',
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider memberNotFoundErrorProvider
+     */
+    public function testNotFoundExceptionWorkARound(string $identifier, array $error): void
+    {
+        $handler = $this->getMockForAbstractClass(RequestHandlerInterface::class);
+        $handler->expects($this->once())->method('handle')->willReturn($response = new Response(400));
+
+        $response->getBody()->write(json_encode(compact('error')));
+        $response->getBody()->rewind();
+
+        try {
+            $middleware = new ExceptionMiddleware();
+            $middleware->process(new Request('GET', 'http://localhost/member/' . $identifier), $handler);
+
+            $this->expectException(NotFoundException::class);
+        } catch (NotFoundException $exception) {
+            $this->assertSame('Unknown member', $exception->getMessage());
+            $this->assertSame(404, $exception->getCode());
+        }
+    }
+
+    public function memberNotFoundErrorProvider(): iterable
+    {
+        return [
+            'using email' => [
+                'jhon.do@example.org',
+                [
+                    'type' => 'invalid_input',
+                    'message' => 'Invalid member_id',
+                    'code' => 202,
+                    'parameter' => 'member_id',
+                ]
+            ],
+            'using member_id' => [
+                'azmsylzsf9',
+                [
+                    'type' => 'invalid_input',
+                    'message' => 'Unknown member',
+                    'code' => 203,
+                    'parameter' => 'member_id',
                 ]
             ]
         ];

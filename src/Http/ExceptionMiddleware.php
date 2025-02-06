@@ -24,7 +24,24 @@ class ExceptionMiddleware implements MiddlewareInterface
         $error = null;
         $body = $response->getBody()->getContents();
         if (preg_match('~^{\s*"error"~ms', $body)) {
+            /** @var Error $error */
             $error = SerializerFactory::create(new Config())->deserialize($body, Error::class, 'json');
+
+            /*
+             * Work a round for member requests with email resulting in Invalid member_id,
+             * when Unknown member is expected
+             */
+            $m = [];
+            if (preg_match('~member/(\S+@\S+\.\S+)~', $request->getUri()->getPath(), $m)) {
+                if (filter_var($m[1], FILTER_VALIDATE_EMAIL)) {
+                    $error->code = 203;
+                    $error->message = 'Unknown member';
+                }
+            }
+
+            if ($error->message === 'Unknown member') {
+                throw NotFoundException::create($error->message, 404);
+            }
         }
 
         if ($response->getStatusCode() == 404) {
