@@ -9,9 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateMailingList implements PostRequest, DeserializableResponse
 {
-    /**
-     * @Assert\Valid()
-     */
+    #[Assert\Valid]
     private MailingList $mailingList;
 
     public function __construct(MailingList $mailingList)

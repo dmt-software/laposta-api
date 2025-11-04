@@ -6,6 +6,7 @@ use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
 use DMT\Laposta\Api\Commands\Webhooks\CreateWebhook;
 use DMT\Laposta\Api\Entity\Webhook;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class CreateWebhookTest extends TestCase
@@ -22,9 +23,7 @@ class CreateWebhookTest extends TestCase
         $this->assertTrue($validator->execute(new CreateWebhook($webhook), fn() => true));
     }
 
-    /**
-     * @dataProvider invalidWebhookProvider
-     */
+    #[DataProvider('invalidWebhookProvider')]
     public function testInvalidCommand(Webhook $webhook): void
     {
         $this->expectException(ValidationException::class);
@@ -33,7 +32,7 @@ class CreateWebhookTest extends TestCase
         $validator->execute(new CreateWebhook($webhook), fn() => true);
     }
 
-    public function invalidWebhookProvider(): iterable
+    public static function invalidWebhookProvider(): iterable
     {
         yield 'empty webhook' => [new Webhook()];
 

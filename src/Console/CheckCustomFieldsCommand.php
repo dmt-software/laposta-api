@@ -4,26 +4,28 @@ namespace DMT\Laposta\Api\Console;
 
 use DMT\Laposta\Api\Config;
 use DMT\Laposta\Api\Services\CustomFieldsGeneratorService;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(
+    name: 'check:list-fields',
+    description: 'Check custom fields entity must be renewed',
+    help: 'Check custom fields entity must be renewed'
+)]
 class CheckCustomFieldsCommand extends Command
 {
-    protected static $defaultName = 'check:list-fields';
-    protected static $defaultDescription = 'Check custom fields entity must be renewed';
-
     protected function configure(): void
     {
         $this
             ->addArgument('config', InputArgument::REQUIRED, 'file containing (or bootstrap that returns) the configuration')
-            ->addOption('list-id', 'l', InputOption::VALUE_REQUIRED, 'the mailing list id')
-            ->setHelp(self::$defaultDescription);
+            ->addOption('list-id', 'l', InputOption::VALUE_REQUIRED, 'the mailing list id');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('----------------------------------------------------------------');
         $output->writeln(' Check custom fields:');

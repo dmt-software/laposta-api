@@ -9,14 +9,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class GetSubscribers implements GetRequest
 {
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $listId;
 
-    /**
-     * @Assert\Choice({"active", "unsubscribed", "cleaned"})
-     */
+    #[Assert\Choice(['active', 'unsubscribed', 'cleaned'])]
     private ?string $state;
 
     public function __construct(string $listId, ?string $state)

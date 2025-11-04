@@ -6,6 +6,7 @@ use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
 use DMT\Laposta\Api\Commands\Subscribers\UpdateSubscriber;
 use DMT\Laposta\Api\Entity\Subscriber;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class UpdateSubscriberTest extends TestCase
@@ -21,9 +22,7 @@ class UpdateSubscriberTest extends TestCase
         $this->assertTrue($validator->execute(new UpdateSubscriber($subscriber), fn() => true));
     }
 
-    /**
-     * @dataProvider invalidSubscriberProvider
-     */
+    #[DataProvider('invalidSubscriberProvider')]
     public function testInvalidCommand(Subscriber $subscriber): void
     {
         $this->expectException(ValidationException::class);
@@ -32,7 +31,7 @@ class UpdateSubscriberTest extends TestCase
         $validator->execute(new UpdateSubscriber($subscriber), fn($command) => $command->getUri() && $command->getPayload());
     }
 
-    public function invalidSubscriberProvider(): iterable
+    public static function invalidSubscriberProvider(): iterable
     {
         $subscriber = new Subscriber();
         $subscriber->id = '9978ydioiZ';

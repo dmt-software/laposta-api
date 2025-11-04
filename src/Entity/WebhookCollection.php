@@ -9,12 +9,9 @@ use Traversable;
 
 class WebhookCollection implements Collection
 {
-    /**
-     * @JMS\Type("array<DMT\Laposta\Api\Entity\Webhook>")
-     * @JMS\SerializedName("data")
-     *
-     * @var array<\DMT\Laposta\Api\Entity\Webhook>
-     */
+    /** @var array<Webhook> */
+    #[JMS\Type('array<DMT\Laposta\Api\Entity\Webhook>')]
+    #[JMS\SerializedName('data')]
     private array $webhooks = [];
 
     public function __construct(array $webhooks = [])

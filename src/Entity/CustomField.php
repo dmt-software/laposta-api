@@ -6,15 +6,9 @@ use JMS\Serializer\Annotation as JMS;
 
 class CustomField
 {
-    /**
-     * @JMS\Type("string")
-     */
+    #[JMS\Type('string')]
     public string $name;
 
-    /**
-     * @JMS\Type("string")
-     *
-     * @var string|array
-     */
-    public $value;
+    #[JMS\Type('string')]
+    public string|array $value;
 }

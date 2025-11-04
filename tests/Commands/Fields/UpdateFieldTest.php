@@ -6,6 +6,7 @@ use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
 use DMT\Laposta\Api\Commands\Fields\UpdateField;
 use DMT\Laposta\Api\Entity\Field;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class UpdateFieldTest extends TestCase
@@ -21,9 +22,7 @@ class UpdateFieldTest extends TestCase
         $this->assertTrue($validator->execute(new UpdateField($field), fn() => true));
     }
 
-    /**
-     * @dataProvider invalidFieldProvider
-     */
+    #[DataProvider('invalidFieldProvider')]
     public function testInvalidCommand(Field $field): void
     {
         $this->expectException(ValidationException::class);
@@ -32,7 +31,7 @@ class UpdateFieldTest extends TestCase
         $validator->execute(new UpdateField($field), fn($command) => $command->getUri() && $command->getPayload());
     }
 
-    public function invalidFieldProvider(): iterable
+    public static function invalidFieldProvider(): iterable
     {
         $field = new Field();
         $field->id = 'Z87ysHha9A';

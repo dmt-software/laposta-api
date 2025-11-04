@@ -7,9 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class DeleteMailingList implements DeleteRequest
 {
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $listId;
 
     public function __construct(string $listId)

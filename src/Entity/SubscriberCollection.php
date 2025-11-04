@@ -9,12 +9,9 @@ use Traversable;
 
 class SubscriberCollection implements Collection
 {
-    /**
-     * @JMS\Type("array<DMT\Laposta\Api\Entity\Subscriber>")
-     * @JMS\SerializedName("data")
-     *
-     * @var array<\DMT\Laposta\Api\Entity\Subscriber>
-     */
+    /** @var array<Subscriber> */
+    #[JMS\Type('array<DMT\Laposta\Api\Entity\Subscriber>')]
+    #[JMS\SerializedName('data')]
     private array $subscribers = [];
 
     public function __construct(array $subscribers = [])

@@ -8,6 +8,7 @@ use DMT\Laposta\Api\Config;
 use DMT\Laposta\Api\Entity\Field;
 use DMT\Laposta\Api\Entity\FieldCollection;
 use DMT\Laposta\Api\Services\CustomFieldsGeneratorService;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,9 +16,7 @@ use PHPUnit\Framework\TestCase;
  */
 class CustomFieldsGeneratorServiceTest extends TestCase
 {
-    /**
-     * @dataProvider fieldForCollectionProvider
-     */
+    #[DataProvider('fieldForCollectionProvider')]
     public function testGenerateEntity(Field $field, string $expected): void
     {
         $this->expectOutputRegex($expected);
@@ -28,7 +27,7 @@ class CustomFieldsGeneratorServiceTest extends TestCase
         $service->generateEntity('BaImMu3JZA', 'My\\Personal\\Space\\EntityClass', 'php://output');
     }
 
-    public function fieldForCollectionProvider(): iterable
+    public static function fieldForCollectionProvider(): iterable
     {
         $field = new Field();
         $field->customName = 'text';
@@ -129,15 +128,13 @@ class CustomFieldsGeneratorServiceTest extends TestCase
 
     }
 
-    /**
-     * @dataProvider isUpToDateEntityProvider
-     */
+    #[DataProvider('isUpToDateEntityProvider')]
     public function testEntityIsUpToDate(string $listId, FieldCollection $collection): void
     {
         $this->assertTrue($this->getCustomFieldsService($collection)->checkEntity($listId));
     }
 
-    public function isUpToDateEntityProvider(): iterable
+    public static function isUpToDateEntityProvider(): iterable
     {
         $field = new Field();
         $field->created = new DateTime('2023-02-28');
@@ -155,15 +152,13 @@ class CustomFieldsGeneratorServiceTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider entityNeedsToBeRenderedProvider
-     */
+    #[DataProvider('entityNeedsToBeRenderedProvider')]
     public function testCheckEntityNeedsToBeRendered(string $listId, FieldCollection $collection): void
     {
         $this->assertFalse($this->getCustomFieldsService($collection)->checkEntity($listId));
     }
 
-    public function entityNeedsToBeRenderedProvider(): iterable
+    public static function entityNeedsToBeRenderedProvider(): iterable
     {
         $field = new Field();
         $field->created = new DateTime('2023-06-28');

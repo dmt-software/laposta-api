@@ -14,8 +14,8 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\CommandLoader\FactoryCommandLoader;
 
 $commandLoader = new FactoryCommandLoader([
-    GenerateCustomFieldsCommand::getDefaultName() => fn() => new GenerateCustomFieldsCommand(),
-    CheckCustomFieldsCommand::getDefaultName() => fn() => new CheckCustomFieldsCommand(),
+    'generate:list-fields' => fn() => new GenerateCustomFieldsCommand(),
+    'check:list-fields' => fn() => new CheckCustomFieldsCommand(),
 ]);
 
 $application = new Application();

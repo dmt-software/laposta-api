@@ -27,14 +27,14 @@ class SerializerFactory implements Factory
             ->addDefaultSerializationVisitors()
             ->setSerializationVisitor('http-post', new HttpPostSerializerVisitorFactory())
             ->addDefaultListeners()
-            ->configureListeners(function (EventDispatcherInterface $dispatcher) use ($config) {
+            ->configureListeners(function (EventDispatcherInterface $dispatcher) use ($config): void {
                 $dispatcher->addSubscriber(new FieldOptionsEventSubscriber());
                 $dispatcher->addSubscriber(new NormalizeNestedEntityEventSubscriber());
                 $dispatcher->addSubscriber(new CustomFieldsEventSubscriber($config));
                 $dispatcher->addSubscriber(new SubscribeOptionsEventSubscriber());
             })
             ->addDefaultHandlers()
-            ->configureHandlers(function (HandlerRegistryInterface $registry) {
+            ->configureHandlers(function (HandlerRegistryInterface $registry): void {
                 $registry->registerSubscribingHandler(new FieldOptionsHandler());
                 $registry->registerSubscribingHandler(new DateTimeHandler());
             })

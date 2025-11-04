@@ -9,12 +9,9 @@ use Traversable;
 
 class FieldCollection implements Collection
 {
-    /**
-     * @JMS\Type("array<DMT\Laposta\Api\Entity\Field>")
-     * @JMS\SerializedName("data")
-     *
-     * @var array<\DMT\Laposta\Api\Entity\Field>
-     */
+    /** @var array<Field> */
+    #[JMS\Type('array<DMT\Laposta\Api\Entity\Field>')]
+    #[JMS\SerializedName('data')]
     private array $fields = [];
     
     public function __construct(array $fields = [])

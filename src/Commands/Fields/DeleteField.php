@@ -8,14 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class DeleteField implements DeleteRequest
 {
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $listId;
 
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $fieldId;
 
     public function __construct(string $listId, string $fieldId)
