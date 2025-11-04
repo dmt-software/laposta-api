@@ -14,27 +14,26 @@ use DMT\Laposta\Api\Interfaces\PostRequest;
 use DMT\Laposta\Api\Interfaces\SerializableRequest;
 use JMS\Serializer\SerializerInterface;
 use League\Tactician\Exception\MissingHandlerException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestFactoryInterface;
 use stdClass;
 
 class HttpRequestLocatorTest extends TestCase
 {
-    /**
-     * @dataProvider handlerForCommandProvider
-     */
+    #[DataProvider('handlerForCommandProvider')]
     public function testGetHandlerForCommand(string $command, string $expectedHandler): void
     {
         $locator = new HttpRequestLocator(
-            $this->getMockForAbstractClass(RequestHandlerInterface::class),
-            $this->getMockForAbstractClass(RequestFactoryInterface::class),
-            $this->getMockForAbstractClass(SerializerInterface::class)
+            $this->getMockBuilder(RequestHandlerInterface::class)->getMock(),
+            $this->getMockBuilder(RequestFactoryInterface::class)->getMock(),
+            $this->getMockBuilder(SerializerInterface::class)->getMock()
         );
 
         $this->assertInstanceOf($expectedHandler, $locator->getHandlerForCommand($command));
     }
 
-    public function handlerForCommandProvider(): iterable
+    public static function handlerForCommandProvider(): iterable
     {
         return [
             [DeleteRequest::class, DeleteRequestHandler::class],
@@ -49,9 +48,9 @@ class HttpRequestLocatorTest extends TestCase
         $this->expectException(MissingHandlerException::class);
 
         $locator = new HttpRequestLocator(
-            $this->getMockForAbstractClass(RequestHandlerInterface::class),
-            $this->getMockForAbstractClass(RequestFactoryInterface::class),
-            $this->getMockForAbstractClass(SerializerInterface::class)
+            $this->getMockBuilder(RequestHandlerInterface::class)->getMock(),
+            $this->getMockBuilder(RequestFactoryInterface::class)->getMock(),
+            $this->getMockBuilder(SerializerInterface::class)->getMock()
         );
 
         $locator->getHandlerForCommand(stdClass::class);

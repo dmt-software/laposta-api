@@ -7,14 +7,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class GetWebhook implements \DMT\Laposta\Api\Interfaces\GetRequest
 {
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $listId;
 
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $webhookId;
 
     public function __construct(string $listId, string $webhookId)

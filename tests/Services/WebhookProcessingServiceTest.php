@@ -10,6 +10,7 @@ use DMT\Laposta\Api\Entity\Webhook;
 use DMT\Laposta\Api\Factories\SerializerFactory;
 use DMT\Laposta\Api\Services\Processors\CallbackEventProcessor;
 use DMT\Laposta\Api\Services\WebhookProcessingService;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -17,7 +18,7 @@ class WebhookProcessingServiceTest extends TestCase
 {
     public function testProcess(): void
     {
-        $callback = function (Event $event) {
+        $callback = function (Event $event): void {
             $this->assertSame(EventInformation::DEACTIVATE_ACTION_DELETED, $event->info->action);
             $this->assertInstanceOf(Subscriber::class, $event->subscriber);
         };
@@ -30,9 +31,7 @@ class WebhookProcessingServiceTest extends TestCase
         $processingService->process(file_get_contents(__DIR__ . '/../Fixtures/events.json'));
     }
 
-    /**
-     * @dataProvider missingWebhookEventTypeProvider
-     */
+    #[DataProvider('missingWebhookEventTypeProvider')]
     public function testProcessNotConfiguredWebhookEvent(string $type): void
     {
         $webhookJson = str_replace(
@@ -51,7 +50,7 @@ class WebhookProcessingServiceTest extends TestCase
         $processingService->process($webhookJson);
     }
 
-    public function missingWebhookEventTypeProvider(): iterable
+    public static function missingWebhookEventTypeProvider(): iterable
     {
         return [
             'missing subscribed event' => [Webhook::EVENT_SUBSCRIBED],

@@ -9,12 +9,9 @@ use Traversable;
 
 class MailingListCollection implements Collection
 {
-    /**
-     * @JMS\Type("array<DMT\Laposta\Api\Entity\MailingList>")
-     * @JMS\SerializedName("data")
-     *
-     * @var array<\DMT\Laposta\Api\Entity\MailingList>
-     */
+    /** @var array<\DMT\Laposta\Api\Entity\MailingList> */
+    #[JMS\Type('array<DMT\Laposta\Api\Entity\MailingList>')]
+    #[JMS\SerializedName('data')]
     private array $mailingLists = [];
 
     public function __construct(array $mailingLists = [])

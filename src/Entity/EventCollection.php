@@ -10,20 +10,16 @@ use Traversable;
 
 class EventCollection implements Collection
 {
-    /**
-     * @JMS\Type("array<DMT\Laposta\Api\Entity\Event>")
-     * @JMS\SerializedName("data")
-     *
-     * @var array<\DMT\Laposta\Api\Entity\Event>
-     */
+    /** @var array<Event> */
+    #[JMS\Type('array<DMT\Laposta\Api\Entity\Event>')]
+    #[JMS\SerializedName('data')]
     private array $events = [];
 
     /**
      * The time at which this request was sent
-     *
-     * @JMS\Type("DateTime<'Y-m-d H:i:s'>")
      */
-    public ?DateTimeInterface $dateRequested;
+    #[JMS\Type("DateTime<'Y-m-d H:i:s'>")]
+    public null|DateTimeInterface $dateRequested = null;
 
     public function __construct(array $events = [])
     {

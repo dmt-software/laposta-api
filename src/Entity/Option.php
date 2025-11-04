@@ -6,17 +6,11 @@ use JMS\Serializer\Annotation as JMS;
 
 class Option
 {
-    /**
-     * The option id
-     *
-     * @JMS\Type("int")
-     */
-    public ?int $id = null;
+    /** The option id */
+    #[JMS\Type('int')]
+    public null|int $id = null;
 
-    /**
-     * The value for the option
-     *
-     * @JMS\Type("string")
-     */
+    /** The value for the option */
+    #[JMS\Type('string')]
     public string $value;
 }

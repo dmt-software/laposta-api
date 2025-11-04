@@ -36,7 +36,7 @@ class FieldOptionsEventSubscriberTest extends TestCase
 
         $options = [];
         array_map(
-            function (Option $option) use (&$options) {
+            function (Option $option) use (&$options): void {
                 $options[$option->id] = $option->value;
             },
             $event->getObject()->optionsFull

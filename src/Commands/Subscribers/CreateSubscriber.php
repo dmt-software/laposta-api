@@ -9,13 +9,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateSubscriber implements PostRequest, DeserializableResponse
 {
-    public const SUPPRESS_EMAIL_NOTIFICATION = 1;
-    public const SUPPRESS_EMAIL_WELCOME = 2;
-    public const IGNORE_DOUBLEOPTIN = 4;
+    public const int SUPPRESS_EMAIL_NOTIFICATION = 1;
+    public const int SUPPRESS_EMAIL_WELCOME = 2;
+    public const int IGNORE_DOUBLEOPTIN = 4;
 
-    /**
-     * @Assert\Valid()
-     */
+    #[Assert\Valid]
     private Subscriber $subscriber;
     private int $subscribeOptions;
 

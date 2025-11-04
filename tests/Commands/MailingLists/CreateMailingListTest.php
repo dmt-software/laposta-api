@@ -6,6 +6,7 @@ use DMT\CommandBus\Validator\ValidationException;
 use DMT\CommandBus\Validator\ValidationMiddleware;
 use DMT\Laposta\Api\Commands\MailingLists\CreateMailingList;
 use DMT\Laposta\Api\Entity\MailingList;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class CreateMailingListTest extends TestCase
@@ -21,9 +22,7 @@ class CreateMailingListTest extends TestCase
         $this->assertTrue($validator->execute($command, fn() => true));
     }
 
-    /**
-     * @dataProvider invalidCommandProvider
-     */
+    #[DataProvider('invalidCommandProvider')]
     public function testInvalidCommand(MailingList $mailingList): void
     {
         $this->expectException(ValidationException::class);
@@ -32,7 +31,7 @@ class CreateMailingListTest extends TestCase
         $validator->execute(new CreateMailingList($mailingList), fn() => true);
     }
 
-    public function invalidCommandProvider(): iterable
+    public static function invalidCommandProvider(): iterable
     {
         yield 'missing list name' => [new MailingList()];
 

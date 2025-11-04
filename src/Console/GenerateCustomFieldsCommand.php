@@ -5,17 +5,20 @@ namespace DMT\Laposta\Api\Console;
 use DMT\Laposta\Api\Config;
 use DMT\Laposta\Api\Services\CustomFieldsGeneratorService;
 use Psr\Http\Client\ClientExceptionInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(
+    name: 'generate:list-fields',
+    description: 'Generate custom fields for a list',
+    help: 'Generate custom fields for a list'
+)]
 class GenerateCustomFieldsCommand extends Command
 {
-    protected static $defaultName = 'generate:list-fields';
-    protected static $defaultDescription = 'Generate custom fields for a list';
-
     protected function configure(): void
     {
         $this
@@ -23,11 +26,10 @@ class GenerateCustomFieldsCommand extends Command
             ->addOption('list-id', 'l', InputOption::VALUE_REQUIRED, 'the mailing list id')
             ->addOption('class-name', 'c', InputOption::VALUE_REQUIRED, 'the (fully qualified) class name of the entity', 'Name\\Space\\CustomFields')
             ->addOption('destination', 'd', InputOption::VALUE_OPTIONAL, 'path to store the generated entity', sys_get_temp_dir())
-            ->addOption('dry-run', null, InputOption::VALUE_NONE, 'dry run to view generation first')
-            ->setHelp(self::$defaultDescription);
+            ->addOption('dry-run', null, InputOption::VALUE_NONE, 'dry run to view generation first');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('----------------------------------------------------------------');
         $output->writeln(' Generate custom fields:');

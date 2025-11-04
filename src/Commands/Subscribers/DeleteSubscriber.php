@@ -7,14 +7,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class DeleteSubscriber implements DeleteRequest
 {
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $listId;
 
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $identifiedBy;
 
     public function __construct(string $listId, string $identifier)

@@ -9,6 +9,7 @@ use DMT\Laposta\Api\Exceptions\NotFoundException;
 use DMT\Laposta\Api\Http\ExceptionMiddleware;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -19,19 +20,17 @@ class ExceptionMiddlewareTest extends TestCase
     {
         $this->expectException(NotFoundException::class);
 
-        $handler = $this->getMockForAbstractClass(RequestHandlerInterface::class);
+        $handler = $this->getMockbuilder(RequestHandlerInterface::class)->getMock();
         $handler->expects($this->once())->method('handle')->willReturn((new Response())->withStatus(404, 'Not found'));
 
         $middleware = new ExceptionMiddleware();
         $middleware->process(new Request('GET', 'http://localhost/'), $handler);
     }
 
-    /**
-     * @dataProvider errorResponseProvider
-     */
+    #[DataProvider('errorResponseProvider')]
     public function testThrowException(ResponseInterface $response, array $error): void
     {
-        $handler = $this->getMockForAbstractClass(RequestHandlerInterface::class);
+        $handler = $this->getMockbuilder(RequestHandlerInterface::class)->getMock();
         $handler->expects($this->once())->method('handle')->willReturn($response);
 
         if ($error) {
@@ -57,7 +56,7 @@ class ExceptionMiddlewareTest extends TestCase
 
     public function testEmptyResponseBody(): void
     {
-        $handler = $this->getMockForAbstractClass(RequestHandlerInterface::class);
+        $handler = $this->getMockBuilder(RequestHandlerInterface::class)->getMock();
         $handler->expects($this->once())->method('handle')->willReturn(new Response(500));
 
         try {
@@ -70,7 +69,7 @@ class ExceptionMiddlewareTest extends TestCase
         }
     }
 
-    public function errorResponseProvider(): iterable
+    public static function errorResponseProvider(): iterable
     {
         $response = new Response();
 
@@ -101,12 +100,10 @@ class ExceptionMiddlewareTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider memberNotFoundErrorProvider
-     */
+    #[DataProvider('memberNotFoundErrorProvider')]
     public function testNotFoundExceptionWorkARound(string $identifier, array $error): void
     {
-        $handler = $this->getMockForAbstractClass(RequestHandlerInterface::class);
+        $handler = $this->getMockbuilder(RequestHandlerInterface::class)->getMock();
         $handler->expects($this->once())->method('handle')->willReturn($response = new Response(400));
 
         $response->getBody()->write(json_encode(compact('error')));
@@ -123,7 +120,7 @@ class ExceptionMiddlewareTest extends TestCase
         }
     }
 
-    public function memberNotFoundErrorProvider(): iterable
+    public static function memberNotFoundErrorProvider(): iterable
     {
         return [
             'using email' => [

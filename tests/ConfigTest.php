@@ -3,13 +3,12 @@
 namespace DMT\Test\Laposta\Api;
 
 use DMT\Laposta\Api\Config;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
-    /**
-     * @dataProvider configFileProvider
-     */
+    #[DataProvider('configFileProvider')]
     public function testLoadFromArray(string $file): void
     {
         $config = Config::load($file);
@@ -18,7 +17,7 @@ class ConfigTest extends TestCase
         $this->assertSame('JdMtbsMq2jqJdQZD9AHC', $config->apiKey);
     }
 
-    public function configFileProvider(): iterable
+    public static function configFileProvider(): iterable
     {
         return [
             'include config array' => [__DIR__ . '/Fixtures/config.php'],

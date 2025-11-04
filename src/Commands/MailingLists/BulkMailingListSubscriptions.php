@@ -14,24 +14,19 @@ class BulkMailingListSubscriptions implements SerializableRequest, Deserializabl
     public const INSERT = 1;
     public const UPDATE = 2;
 
-    /**
-     * @Assert\NotBlank()
-     * @JMS\Exclude()
-     */
+    #[Assert\NotBlank]
+    #[JMS\Exclude]
     private string $listId;
 
     /**
-     * @Assert\Count(min=1, max=100000)
-     * @JMS\Type("array<DMT\Laposta\Api\Entity\Subscriber>")
-     * @JMS\SerializedName("members")
-     *
      * @var array<Subscriber>
      */
+    #[Assert\Count(min: 1, max: 100000)]
+    #[JMS\Type('array<DMT\Laposta\Api\Entity\Subscriber>')]
+    #[JMS\SerializedName('members')]
     private array $subscribers;
 
-    /**
-     * @JMS\Exclude()
-     */
+    #[JMS\Exclude]
     private int $flags;
 
     /**
@@ -51,9 +46,7 @@ class BulkMailingListSubscriptions implements SerializableRequest, Deserializabl
         return sprintf('https://api.laposta.nl/v2/list/%s/members', $this->listId);
     }
 
-    /**
-     * @JMS\VirtualProperty()
-     */
+    #[JMS\VirtualProperty]
     public function getMode(): string
     {
         $mode = '';

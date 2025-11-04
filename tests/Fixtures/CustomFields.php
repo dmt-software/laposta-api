@@ -16,25 +16,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class CustomFields extends BaseCustomFields
 {
-    /**
-     * @JMS\Type("string")
-     *
-     * @Assert\NotBlank()
-     */
-    public ?string $name = null;
+    #[Assert\NotBlank]
+    #[JMS\Type('string')]
+    public null|string $name = null;
 
-    /**
-     * @JMS\Type("DateTime<'Y-m-d', '', 'Y-m-d H:i:s'>")
-     */
-    public ?DateTime $dateofbirth = null;
+    #[JMS\Type("DateTime<'Y-m-d', '', 'Y-m-d H:i:s'>")]
+    public null|DateTime $dateofbirth = null;
 
-    /**
-     * @JMS\Type("int")
-     */
-    public ?int $children = null;
+    #[JMS\Type('int')]
+    public null|int $children = null;
 
-    /**
-     * @JMS\Type("array")
-     */
-    public ?array $prefs = null;
+    #[JMS\Type('array')]
+    public null|array $prefs = null;
 }

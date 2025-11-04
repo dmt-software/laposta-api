@@ -9,9 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateField implements PostRequest, DeserializableResponse
 {
-    /**
-     * @Assert\Valid()
-     */
+    #[Assert\Valid]
     private Field $field;
 
     public function __construct(Field $field)

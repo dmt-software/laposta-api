@@ -20,38 +20,23 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Error
 {
-    /**
-     * The type of error.
-     *
-     * @JMS\Type("string")
-     */
+    /** The type of error */
+    #[JMS\Type('string')]
     public string $type;
 
-    /**
-     * The human-readable message.
-     *
-     * @JMS\Type("string")
-     */
+    /** The human-readable message. */
+    #[JMS\Type('string')]
     public string $message;
 
-    /**
-     * Optional error code (see listing above)
-     *
-     * @JMS\Type("int")
-     */
-    public ?int $code = null;
+    /** Optional error code (see listing above) */
+    #[JMS\Type('int')]
+    public null|int $code = null;
 
-    /**
-     * The parameter it concerns. (optional)
-     *
-     * @JMS\Type("string")
-     */
-    public ?string $parameter = null;
+    /** The parameter it concerns. (optional) */
+    #[JMS\Type('string')]
+    public null|string $parameter = null;
 
-    /**
-     * The concerned subscriber's email or member_id (only in case of bulk insert/update)
-     *
-     * @JMS\Type("string")
-     */
-    public ?string $identification = null;
+    /** The concerned subscriber's email or member_id (only in case of bulk insert/update) */
+    #[JMS\Type('string')]
+    public null|string $identification = null;
 }

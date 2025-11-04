@@ -8,6 +8,7 @@ use DMT\Laposta\Api\Entity\Subscriber;
 use DMT\Laposta\Api\Factories\SerializerFactory;
 use DMT\Test\Laposta\Api\Fixtures\CustomFields;
 use JMS\Serializer\SerializationContext;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class SubscriberTest extends TestCase
@@ -33,7 +34,7 @@ class SubscriberTest extends TestCase
         $this->assertStringContainsString('custom_fields%5Bname%5D=Jane+Do', $payload);
     }
 
-    /** @dataProvider provideSubscriberJson */
+    #[DataProvider('provideSubscriberJson')]
     public function testDeserializeSubscriberWithCustomFieldsEntity(
         string $subscriberJson,
         string $emptyField,
@@ -56,7 +57,7 @@ class SubscriberTest extends TestCase
         $this->assertSame($expectedEmptyValue, $subscriber->customFields->$emptyField);
     }
 
-    /** @dataProvider provideSubscriberJson */
+    #[DataProvider('provideSubscriberJson', false)]
     public function testDeserializeSubscriberWithoutCustomFieldsEntity(string $subscriberJson, string $emptyField)
     {
         $subscriber = SerializerFactory::create(new Config())->deserialize(
@@ -71,7 +72,7 @@ class SubscriberTest extends TestCase
         $fields = [];
         array_walk(
             $subscriber->customFields->field,
-            function(CustomField $field) use (&$fields) {
+            function(CustomField $field) use (&$fields): void {
                 $fields[$field->name] = $field;
             }
         );
@@ -79,7 +80,7 @@ class SubscriberTest extends TestCase
         $this->assertEmpty($fields[$emptyField]->value);
     }
 
-    public function provideSubscriberJson(): iterable
+    public static function provideSubscriberJson(): iterable
     {
         $json = file_get_contents(__DIR__ . '/../Fixtures/subscriber.json');
 

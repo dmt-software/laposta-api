@@ -6,16 +6,11 @@ use JMS\Serializer\Annotation as JMS;
 
 class SubscriptionsReport
 {
-    /**
-     * @JMS\Type("DMT\Laposta\Api\Entity\ReportSummary")
-     * @JMS\SerializedName("report")
-     */
+    #[JMS\Type(ReportSummary::class)]
+    #[JMS\SerializedName('report')]
     public ReportSummary $summary;
 
-    /**
-     * @JMS\Type("array<DMT\Laposta\Api\Entity\Error>")
-     *
-     * @var array<Error>
-     */
+    /** @var array<Error> */
+    #[JMS\Type('array<DMT\Laposta\Api\Entity\Error>')]
     public array $errors;
 }

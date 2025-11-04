@@ -9,9 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateWebhook implements PostRequest, DeserializableResponse
 {
-    /**
-     * @Assert\Valid()
-     */
+    #[Assert\Valid]
     private Webhook $webhook;
 
     public function __construct(Webhook $webhook)

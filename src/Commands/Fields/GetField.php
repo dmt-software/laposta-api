@@ -8,14 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class GetField implements GetRequest
 {
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $listId;
 
-    /**
-     * @Assert\NotBlank()
-     */
+    #[Assert\NotBlank]
     private string $fieldId;
 
     public function __construct(string $listId, string $fieldId)
