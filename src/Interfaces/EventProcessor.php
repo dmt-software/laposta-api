@@ -6,7 +6,5 @@ use DMT\Laposta\Api\Entity\Event;
 
 interface EventProcessor
 {
-
-
     public function process(Event $event): void;
 }

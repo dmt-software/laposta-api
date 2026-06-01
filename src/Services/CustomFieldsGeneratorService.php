@@ -18,7 +18,7 @@ class CustomFieldsGeneratorService
     private Fields $fields;
     private TemplateParser $parser;
 
-    public function __construct(Config $config, Fields $fields = null, TemplateParser $parser = null)
+    public function __construct(Config $config, ?Fields $fields = null, ?TemplateParser $parser = null)
     {
         $this->config = $config;
         $this->fields = $fields ?? new Fields(CommandBusFactory::create($config));

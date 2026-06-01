@@ -18,8 +18,8 @@ class WebhookProcessingService
     public function __construct(
         Serializer $serializer,
         EventProcessor $deactivateProcessor,
-        EventProcessor $subscribeProcessor = null,
-        EventProcessor $modifyProcessor = null
+        ?EventProcessor $subscribeProcessor = null,
+        ?EventProcessor $modifyProcessor = null
     ) {
         $this->serializer = $serializer;
         $this->deactivateProcessor = $deactivateProcessor;
