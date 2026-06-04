@@ -8,7 +8,7 @@ class NativePhpParser implements TemplateParser
 {
     private string $template = __DIR__ . '/../../../templates/members.annotations.php';
 
-    public function __construct(string $template = null)
+    public function __construct(?string $template = null)
     {
         $this->template = $template ?? $this->template;
     }

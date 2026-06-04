@@ -32,7 +32,7 @@ class Subscribers
      *
      * @return SubscriberCollection
      */
-    public function all(string $listId, string $state = null): SubscriberCollection
+    public function all(string $listId, ?string $state = null): SubscriberCollection
     {
         return $this->commandBus->handle(new GetSubscribers($listId, $state));
     }
